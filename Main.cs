@@ -31,7 +31,7 @@ namespace ProjectToolsBepInEx
 
         private void LoadAvailableVersions()
         {
-            comboBepInExVersions.Items.Clear();
+            ComboBepInExVersions.Items.Clear();
 
             UnityType unityType = GameInfo.unityType;
 
@@ -45,14 +45,14 @@ namespace ProjectToolsBepInEx
                 var key = (version, unityType, GameInfo.arcteture);
                 if (DownloadFiles.VersionedBepInExLinks.ContainsKey(key))
                 {
-                    comboBepInExVersions.Items.Add(version);
+                    ComboBepInExVersions.Items.Add(version);
                 }
             }
 
-            if (comboBepInExVersions.Items.Count > 0)
+            if (ComboBepInExVersions.Items.Count > 0)
             {
-                comboBepInExVersions.SelectedIndex = 0;
-                GameInfo.selected_version = (VersionsBepInEx)comboBepInExVersions.SelectedItem;
+                ComboBepInExVersions.SelectedIndex = 0;
+                GameInfo.selected_version = (VersionsBepInEx)ComboBepInExVersions.SelectedItem;
             }
         }
 
@@ -89,10 +89,12 @@ namespace ProjectToolsBepInEx
             ini.Save(iniPath);
         }
 
-        private void StartGame()
+        private async void StartGame()
         {
             GameInfo.gameProcess.StartInfo.FileName             = exePath;
             GameInfo.gameProcess.Start();
+            await Task.Delay(3000);
+            LoadedGame();
         }
 
         private async void OpenFileAndWaitStart()
@@ -136,12 +138,10 @@ namespace ProjectToolsBepInEx
 
             try
             {
-                SelectGame.Enabled = false;
-                SelectGame.Text = "Baixando...";
-                labelStatus.Text = "Baixando arquivos...";
-                progressBar1.Value = 0;
-                progressBar1.Visible = true;
-                labelStatus.Visible = true;
+                labelStatus.Text        = "Baixando arquivos...";
+                progressBar1.Value      = 0;
+                progressBar1.Visible    = true;
+                labelStatus.Visible     = true;
 
                 using (WebClient client = new WebClient())
                 {
@@ -155,12 +155,17 @@ namespace ProjectToolsBepInEx
                 }
 
                 labelStatus.Text = "Extraindo arquivos...";
-                SelectGame.Text = "Extraindo...";
 
                 await Task.Run(() => DownloadFiles.ExtractZipOverwrite(tempZipPath, targetFolder));
 
-                MessageBox.Show("BepInEx baixado e extraído com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                OpenFileAndWaitStart();
+                labelStatus.Text = "BepInEx baixado e extraído com sucesso!";
+
+                LoadedGame();
+
+                if (GameInfo.bepinex_version_enum != VersionsBepInEx.v6_0_0)
+                {
+                    OpenFileAndWaitStart();
+                }
             }
             catch (Exception ex)
             {
@@ -168,30 +173,27 @@ namespace ProjectToolsBepInEx
             }
             finally
             {
-                SelectGame.Enabled = true;
-                SelectGame.Text = "Selecionar Pasta";
-                progressBar1.Visible = false;
-                labelStatus.Visible = false;
+                progressBar1.Value = 0;
             }
         }
 
         private async void DownloadUnityExplorer()
         {
-            if (GameInfo.unityType == UnityType.Unknown || GameInfo.arcteture == Arcteture.Unknown || GameInfo.selected_version == VersionsBepInEx.Unknown)
+            if (GameInfo.unityType == UnityType.Unknown || GameInfo.arcteture == Arcteture.Unknown || GameInfo.bepinex_version_enum == VersionsBepInEx.Unknown)
                 return;
 
-            string targetFolder         = Path.GetDirectoryName(exePath);
+            string targetFolder         = Path.Combine(Path.GetDirectoryName(exePath), "BepInEx");
             string zipUrl               = DownloadFiles.GetUnityExplorerUrl();
-            string tempZipPath          = Path.Combine(Path.GetTempPath(), "unityexplorer.zip");
+            MessageBox.Show(zipUrl);
+
+            string tempZipPath = Path.Combine(Path.GetTempPath(), "unityexplorer.zip");
 
             try
             {
-                SelectGame.Enabled = false;
-                SelectGame.Text = "Baixando...";
-                labelStatus.Text = "Baixando arquivos...";
-                progressBar1.Value = 0;
-                progressBar1.Visible = true;
-                labelStatus.Visible = true;
+                labelStatus.Text        = "Baixando arquivos...";
+                progressBar1.Value      = 0;
+                progressBar1.Visible    = true;
+                labelStatus.Visible     = true;
 
                 using (WebClient client = new WebClient())
                 {
@@ -205,12 +207,12 @@ namespace ProjectToolsBepInEx
                 }
 
                 labelStatus.Text = "Extraindo arquivos...";
-                SelectGame.Text = "Extraindo...";
 
                 await Task.Run(() => DownloadFiles.ExtractZipOverwrite(tempZipPath, targetFolder));
 
-                MessageBox.Show("UnityExplorer baixado e extraído com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                OpenFileAndWaitStart();
+                labelStatus.Text = "UnityExplorer baixado e extraído com sucesso!";
+
+                LoadedGame();
             }
             catch (Exception ex)
             {
@@ -218,29 +220,26 @@ namespace ProjectToolsBepInEx
             }
             finally
             {
-                SelectGame.Enabled = true;
-                SelectGame.Text = "Selecionar Pasta";
-                progressBar1.Visible = false;
-                labelStatus.Visible = false;
+                progressBar1.Value = 0;
             }
         }
 
         private void ResetConfig()
         {
-            EnableAssemblyCache.Checked = false;
-            HideManagerGameObject.Checked = false;
-            UnityLogListening.Checked = false;
-            LogConsoleToUnityLog.Checked = false;
-            ConsoleEnabled.Checked = false;
-            PreventClose.Checked = false;
-            ShiftJisEncoding.Checked = false;
-            WriteUnityLog.Checked = false;
-            AppendLog.Checked = false;
-            DiskLogEnabled.Checked = false;
-            ApplyRuntimePatches.Checked = false;
-            DumpAssemblies.Checked = false;
-            LoadDumpedAssemblies.Checked = false;
-            BreakBeforeLoadAssemblies.Checked = false;
+            EnableAssemblyCache.Checked             = false;
+            HideManagerGameObject.Checked           = false;
+            UnityLogListening.Checked               = false;
+            LogConsoleToUnityLog.Checked            = false;
+            ConsoleEnabled.Checked                  = false;
+            PreventClose.Checked                    = false;
+            ShiftJisEncoding.Checked                = false;
+            WriteUnityLog.Checked                   = false;
+            AppendLog.Checked                       = false;
+            DiskLogEnabled.Checked                  = false;
+            ApplyRuntimePatches.Checked             = false;
+            DumpAssemblies.Checked                  = false;
+            LoadDumpedAssemblies.Checked            = false;
+            BreakBeforeLoadAssemblies.Checked       = false;
         }
 
         private void SetInfoGame()
@@ -354,8 +353,10 @@ namespace ProjectToolsBepInEx
 
         private void SelectGame_Click(object sender, EventArgs e)
         {
-            OpenFileDialog folder   = new OpenFileDialog();
-            folder.Filter           = "Executable Files|*.exe";
+            OpenFileDialog folder = new OpenFileDialog
+            {
+                Filter = "Executable Files|*.exe"
+            };
 
             if (folder.ShowDialog() == DialogResult.OK)
             {
@@ -385,12 +386,42 @@ namespace ProjectToolsBepInEx
 
         private void CloseGame_Click(object sender, EventArgs e)
         {
-            GameInfo.gameProcess.Kill();
+            try
+            {
+                if (GameInfo.gameProcess != null && !GameInfo.gameProcess.HasExited)
+                {
+                    GameInfo.gameProcess.Kill();
+                    return;
+                }
+            }
+            catch
+            {
+
+            }
+
+            if (GameInfo.gameProcess != null)
+            {
+                string name     = Path.GetFileNameWithoutExtension(exePath);
+                var processes   = Process.GetProcessesByName(name);
+
+                foreach (var proc in processes)
+                {
+                    try
+                    {
+                        proc.Kill();
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
         }
 
         private void UnistallBepInEx_Click(object sender, EventArgs e)
         {
             bepInExConfig.RemoveBepInEx(exePath);
+            bepInExConfig.DeletePreloaderFiles(exePath);
             LoadedGame();
         }
 
@@ -433,9 +464,9 @@ namespace ProjectToolsBepInEx
             }
         }
 
-        private void comboBepInExVersions_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBepInExVersions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBepInExVersions.SelectedItem is VersionsBepInEx selected)
+            if (ComboBepInExVersions.SelectedItem is VersionsBepInEx selected)
             {
                 GameInfo.selected_version = selected;
             }
@@ -449,6 +480,7 @@ namespace ProjectToolsBepInEx
         private void UnistallUnityExplorer_Click(object sender, EventArgs e)
         {
             unityExplorerConfig.RemoverUnityExplorer(exePath);
+            LoadedGame();
         }
     }
 }

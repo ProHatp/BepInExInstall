@@ -51,7 +51,7 @@ static class DownloadFiles
 
     public static string GetUnityExplorerUrl()
     {
-        var key = (GameInfo.selected_version, GameInfo.unityType, GameInfo.arcteture);
+        var key = (GameInfo.bepinex_version_enum, GameInfo.unityType, GameInfo.arcteture);
 
         if (VersionedUnityExplorerLinks.TryGetValue(key, out string url))
             return url;

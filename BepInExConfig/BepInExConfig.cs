@@ -47,13 +47,43 @@ public class BepInExConfig
     public string EntryType;
     public string EntryMethod;
 
-    public static void RemoveCommentsFromCfg(string filePath)
+    public void RemoveCommentsFromCfg(string filePath)
     {
         var cleanedLines = File.ReadAllLines(filePath)
             .Where(line => !line.TrimStart().StartsWith("#"))
             .ToList();
 
         File.WriteAllLines(filePath, cleanedLines);
+    }
+
+    public void DeletePreloaderFiles(string exePath)
+    {
+        string targetFolder = Path.GetDirectoryName(exePath);
+        try
+        {
+            if (!Directory.Exists(targetFolder))
+            {
+                return;
+            }
+
+            string[] files = Directory.GetFiles(targetFolder, "preloader_*");
+
+            foreach (string file in files)
+            {
+                try
+                {
+                    File.Delete(file);
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+        }
+        catch (Exception)
+        {
+
+        }
     }
 
     public void RemoveBepInEx(string exePath)
@@ -76,11 +106,11 @@ public class BepInExConfig
 
             string[] arquivosParaExcluir = new[]
             {
-                    ".doorstop_version",
-                    "changelog.txt",
-                    "doorstop_config.ini",
-                    "winhttp.dll"
-                };
+                ".doorstop_version",
+                "changelog.txt",
+                "doorstop_config.ini",
+                "winhttp.dll"
+            };
 
             foreach (string nomeArquivo in arquivosParaExcluir)
             {

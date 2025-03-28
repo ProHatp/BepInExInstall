@@ -69,15 +69,15 @@
             this.label7 = new System.Windows.Forms.Label();
             this.bepinex_loaded = new System.Windows.Forms.Label();
             this.bepinex_config = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.unityexplorer_loaded = new System.Windows.Forms.Label();
             this.DownLoadBepIn = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.labelStatus = new System.Windows.Forms.Label();
             this.OpenGame = new System.Windows.Forms.Button();
             this.CloseGame = new System.Windows.Forms.Button();
             this.UnistallBepInEx = new System.Windows.Forms.Button();
-            this.comboBepInExVersions = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.unityexplorer_loaded = new System.Windows.Forms.Label();
+            this.ComboBepInExVersions = new System.Windows.Forms.ComboBox();
             this.InstallUnityExplorer = new System.Windows.Forms.Button();
             this.UnistallUnityExplorer = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -92,7 +92,7 @@
             // 
             // SelectGame
             // 
-            this.SelectGame.Location = new System.Drawing.Point(6, 455);
+            this.SelectGame.Location = new System.Drawing.Point(6, 452);
             this.SelectGame.Name = "SelectGame";
             this.SelectGame.Size = new System.Drawing.Size(191, 29);
             this.SelectGame.TabIndex = 0;
@@ -223,9 +223,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.EnableAssemblyCache);
-            this.groupBox1.Location = new System.Drawing.Point(523, 12);
+            this.groupBox1.Location = new System.Drawing.Point(580, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(273, 120);
+            this.groupBox1.Size = new System.Drawing.Size(228, 120);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Caching";
@@ -233,18 +233,18 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.HideManagerGameObject);
-            this.groupBox2.Location = new System.Drawing.Point(523, 138);
+            this.groupBox2.Location = new System.Drawing.Point(580, 138);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(273, 120);
+            this.groupBox2.Size = new System.Drawing.Size(228, 120);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Chainloader";
             // 
             // groupBox3
             // 
-            this.groupBox3.Location = new System.Drawing.Point(523, 264);
+            this.groupBox3.Location = new System.Drawing.Point(580, 264);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(273, 120);
+            this.groupBox3.Size = new System.Drawing.Size(228, 120);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Harmony Logger";
@@ -253,9 +253,9 @@
             // 
             this.groupBox4.Controls.Add(this.UnityLogListening);
             this.groupBox4.Controls.Add(this.LogConsoleToUnityLog);
-            this.groupBox4.Location = new System.Drawing.Point(523, 390);
+            this.groupBox4.Location = new System.Drawing.Point(580, 390);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(273, 120);
+            this.groupBox4.Size = new System.Drawing.Size(228, 120);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Logging";
@@ -265,9 +265,9 @@
             this.groupBox5.Controls.Add(this.ConsoleEnabled);
             this.groupBox5.Controls.Add(this.PreventClose);
             this.groupBox5.Controls.Add(this.ShiftJisEncoding);
-            this.groupBox5.Location = new System.Drawing.Point(802, 12);
+            this.groupBox5.Location = new System.Drawing.Point(814, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(273, 120);
+            this.groupBox5.Size = new System.Drawing.Size(228, 120);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Logging Console";
@@ -287,9 +287,9 @@
             this.groupBox6.Controls.Add(this.WriteUnityLog);
             this.groupBox6.Controls.Add(this.AppendLog);
             this.groupBox6.Controls.Add(this.DiskLogEnabled);
-            this.groupBox6.Location = new System.Drawing.Point(802, 138);
+            this.groupBox6.Location = new System.Drawing.Point(814, 138);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(273, 120);
+            this.groupBox6.Size = new System.Drawing.Size(228, 120);
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Logging Disk";
@@ -310,18 +310,18 @@
             this.groupBox7.Controls.Add(this.DumpAssemblies);
             this.groupBox7.Controls.Add(this.LoadDumpedAssemblies);
             this.groupBox7.Controls.Add(this.BreakBeforeLoadAssemblies);
-            this.groupBox7.Location = new System.Drawing.Point(802, 264);
+            this.groupBox7.Location = new System.Drawing.Point(814, 264);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(273, 120);
+            this.groupBox7.Size = new System.Drawing.Size(228, 120);
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Preloader";
             // 
             // groupBox8
             // 
-            this.groupBox8.Location = new System.Drawing.Point(802, 390);
+            this.groupBox8.Location = new System.Drawing.Point(814, 390);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(273, 120);
+            this.groupBox8.Size = new System.Drawing.Size(228, 120);
             this.groupBox8.TabIndex = 0;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Preloader Entrypoint";
@@ -329,9 +329,9 @@
             // pictureBoxIcon
             // 
             this.pictureBoxIcon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxIcon.Location = new System.Drawing.Point(3, 12);
+            this.pictureBoxIcon.Location = new System.Drawing.Point(6, 12);
             this.pictureBoxIcon.Name = "pictureBoxIcon";
-            this.pictureBoxIcon.Size = new System.Drawing.Size(103, 89);
+            this.pictureBoxIcon.Size = new System.Drawing.Size(166, 89);
             this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxIcon.TabIndex = 18;
             this.pictureBoxIcon.TabStop = false;
@@ -370,7 +370,7 @@
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.OutsetPartial;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 897F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 903F));
             this.tableLayoutPanel1.Controls.Add(this.game_architecture, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label8, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.unity_type, 1, 2);
@@ -389,7 +389,7 @@
             this.tableLayoutPanel1.Controls.Add(this.bepinex_config, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.unityexplorer_loaded, 1, 9);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(112, 12);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(178, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 11;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -410,7 +410,7 @@
             // 
             this.game_architecture.Location = new System.Drawing.Point(129, 87);
             this.game_architecture.Name = "game_architecture";
-            this.game_architecture.Size = new System.Drawing.Size(279, 20);
+            this.game_architecture.Size = new System.Drawing.Size(256, 20);
             this.game_architecture.TabIndex = 34;
             this.game_architecture.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -427,7 +427,7 @@
             // 
             this.unity_type.Location = new System.Drawing.Point(129, 59);
             this.unity_type.Name = "unity_type";
-            this.unity_type.Size = new System.Drawing.Size(279, 23);
+            this.unity_type.Size = new System.Drawing.Size(256, 23);
             this.unity_type.TabIndex = 28;
             this.unity_type.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -444,7 +444,7 @@
             // 
             this.game_name.Location = new System.Drawing.Point(129, 3);
             this.game_name.Name = "game_name";
-            this.game_name.Size = new System.Drawing.Size(279, 25);
+            this.game_name.Size = new System.Drawing.Size(256, 25);
             this.game_name.TabIndex = 22;
             this.game_name.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -452,7 +452,7 @@
             // 
             this.unity_version.Location = new System.Drawing.Point(129, 31);
             this.unity_version.Name = "unity_version";
-            this.unity_version.Size = new System.Drawing.Size(279, 23);
+            this.unity_version.Size = new System.Drawing.Size(256, 23);
             this.unity_version.TabIndex = 24;
             this.unity_version.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -469,7 +469,7 @@
             // 
             this.bepinex_status.Location = new System.Drawing.Point(129, 138);
             this.bepinex_status.Name = "bepinex_status";
-            this.bepinex_status.Size = new System.Drawing.Size(279, 20);
+            this.bepinex_status.Size = new System.Drawing.Size(256, 20);
             this.bepinex_status.TabIndex = 23;
             this.bepinex_status.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -477,7 +477,7 @@
             // 
             this.bepinex_version.Location = new System.Drawing.Point(129, 161);
             this.bepinex_version.Name = "bepinex_version";
-            this.bepinex_version.Size = new System.Drawing.Size(279, 20);
+            this.bepinex_version.Size = new System.Drawing.Size(256, 20);
             this.bepinex_version.TabIndex = 26;
             this.bepinex_version.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -503,7 +503,7 @@
             // 
             this.bepinex_loaded.Location = new System.Drawing.Point(129, 184);
             this.bepinex_loaded.Name = "bepinex_loaded";
-            this.bepinex_loaded.Size = new System.Drawing.Size(279, 20);
+            this.bepinex_loaded.Size = new System.Drawing.Size(256, 20);
             this.bepinex_loaded.TabIndex = 31;
             this.bepinex_loaded.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -511,73 +511,9 @@
             // 
             this.bepinex_config.Location = new System.Drawing.Point(129, 207);
             this.bepinex_config.Name = "bepinex_config";
-            this.bepinex_config.Size = new System.Drawing.Size(279, 20);
+            this.bepinex_config.Size = new System.Drawing.Size(256, 20);
             this.bepinex_config.TabIndex = 32;
             this.bepinex_config.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // DownLoadBepIn
-            // 
-            this.DownLoadBepIn.Location = new System.Drawing.Point(317, 299);
-            this.DownLoadBepIn.Name = "DownLoadBepIn";
-            this.DownLoadBepIn.Size = new System.Drawing.Size(191, 29);
-            this.DownLoadBepIn.TabIndex = 23;
-            this.DownLoadBepIn.Text = "INSTALL BEPINEX";
-            this.DownLoadBepIn.UseVisualStyleBackColor = true;
-            this.DownLoadBepIn.Click += new System.EventHandler(this.DownLoadBepIn_Click);
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(6, 487);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(511, 23);
-            this.progressBar1.TabIndex = 25;
-            // 
-            // labelStatus
-            // 
-            this.labelStatus.AutoSize = true;
-            this.labelStatus.Location = new System.Drawing.Point(203, 471);
-            this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(0, 13);
-            this.labelStatus.TabIndex = 26;
-            // 
-            // OpenGame
-            // 
-            this.OpenGame.Location = new System.Drawing.Point(112, 420);
-            this.OpenGame.Name = "OpenGame";
-            this.OpenGame.Size = new System.Drawing.Size(191, 29);
-            this.OpenGame.TabIndex = 27;
-            this.OpenGame.Text = "OPEN GAME";
-            this.OpenGame.UseVisualStyleBackColor = true;
-            this.OpenGame.Click += new System.EventHandler(this.OpenGame_Click);
-            // 
-            // CloseGame
-            // 
-            this.CloseGame.Location = new System.Drawing.Point(317, 420);
-            this.CloseGame.Name = "CloseGame";
-            this.CloseGame.Size = new System.Drawing.Size(191, 29);
-            this.CloseGame.TabIndex = 28;
-            this.CloseGame.Text = "CLOSE GAME";
-            this.CloseGame.UseVisualStyleBackColor = true;
-            this.CloseGame.Click += new System.EventHandler(this.CloseGame_Click);
-            // 
-            // UnistallBepInEx
-            // 
-            this.UnistallBepInEx.Location = new System.Drawing.Point(317, 334);
-            this.UnistallBepInEx.Name = "UnistallBepInEx";
-            this.UnistallBepInEx.Size = new System.Drawing.Size(191, 29);
-            this.UnistallBepInEx.TabIndex = 29;
-            this.UnistallBepInEx.Text = "UNISTALL BEPINEX";
-            this.UnistallBepInEx.UseVisualStyleBackColor = true;
-            this.UnistallBepInEx.Click += new System.EventHandler(this.UnistallBepInEx_Click);
-            // 
-            // comboBepInExVersions
-            // 
-            this.comboBepInExVersions.FormattingEnabled = true;
-            this.comboBepInExVersions.Location = new System.Drawing.Point(112, 302);
-            this.comboBepInExVersions.Name = "comboBepInExVersions";
-            this.comboBepInExVersions.Size = new System.Drawing.Size(199, 21);
-            this.comboBepInExVersions.TabIndex = 30;
-            this.comboBepInExVersions.SelectedIndexChanged += new System.EventHandler(this.comboBepInExVersions_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -592,15 +528,79 @@
             // 
             this.unityexplorer_loaded.Location = new System.Drawing.Point(129, 230);
             this.unityexplorer_loaded.Name = "unityexplorer_loaded";
-            this.unityexplorer_loaded.Size = new System.Drawing.Size(279, 20);
+            this.unityexplorer_loaded.Size = new System.Drawing.Size(256, 20);
             this.unityexplorer_loaded.TabIndex = 36;
             this.unityexplorer_loaded.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // DownLoadBepIn
+            // 
+            this.DownLoadBepIn.Location = new System.Drawing.Point(3, 107);
+            this.DownLoadBepIn.Name = "DownLoadBepIn";
+            this.DownLoadBepIn.Size = new System.Drawing.Size(169, 29);
+            this.DownLoadBepIn.TabIndex = 23;
+            this.DownLoadBepIn.Text = "INSTALL BEPINEX";
+            this.DownLoadBepIn.UseVisualStyleBackColor = true;
+            this.DownLoadBepIn.Click += new System.EventHandler(this.DownLoadBepIn_Click);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(6, 487);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(568, 23);
+            this.progressBar1.TabIndex = 25;
+            // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new System.Drawing.Point(203, 471);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(0, 13);
+            this.labelStatus.TabIndex = 26;
+            // 
+            // OpenGame
+            // 
+            this.OpenGame.Location = new System.Drawing.Point(178, 294);
+            this.OpenGame.Name = "OpenGame";
+            this.OpenGame.Size = new System.Drawing.Size(191, 29);
+            this.OpenGame.TabIndex = 27;
+            this.OpenGame.Text = "OPEN GAME";
+            this.OpenGame.UseVisualStyleBackColor = true;
+            this.OpenGame.Click += new System.EventHandler(this.OpenGame_Click);
+            // 
+            // CloseGame
+            // 
+            this.CloseGame.Location = new System.Drawing.Point(383, 294);
+            this.CloseGame.Name = "CloseGame";
+            this.CloseGame.Size = new System.Drawing.Size(191, 29);
+            this.CloseGame.TabIndex = 28;
+            this.CloseGame.Text = "CLOSE GAME";
+            this.CloseGame.UseVisualStyleBackColor = true;
+            this.CloseGame.Click += new System.EventHandler(this.CloseGame_Click);
+            // 
+            // UnistallBepInEx
+            // 
+            this.UnistallBepInEx.Location = new System.Drawing.Point(3, 138);
+            this.UnistallBepInEx.Name = "UnistallBepInEx";
+            this.UnistallBepInEx.Size = new System.Drawing.Size(169, 29);
+            this.UnistallBepInEx.TabIndex = 29;
+            this.UnistallBepInEx.Text = "UNISTALL BEPINEX";
+            this.UnistallBepInEx.UseVisualStyleBackColor = true;
+            this.UnistallBepInEx.Click += new System.EventHandler(this.UnistallBepInEx_Click);
+            // 
+            // ComboBepInExVersions
+            // 
+            this.ComboBepInExVersions.FormattingEnabled = true;
+            this.ComboBepInExVersions.Location = new System.Drawing.Point(3, 264);
+            this.ComboBepInExVersions.Name = "ComboBepInExVersions";
+            this.ComboBepInExVersions.Size = new System.Drawing.Size(169, 21);
+            this.ComboBepInExVersions.TabIndex = 30;
+            this.ComboBepInExVersions.SelectedIndexChanged += new System.EventHandler(this.ComboBepInExVersions_SelectedIndexChanged);
+            // 
             // InstallUnityExplorer
             // 
-            this.InstallUnityExplorer.Location = new System.Drawing.Point(112, 385);
+            this.InstallUnityExplorer.Location = new System.Drawing.Point(3, 184);
             this.InstallUnityExplorer.Name = "InstallUnityExplorer";
-            this.InstallUnityExplorer.Size = new System.Drawing.Size(191, 29);
+            this.InstallUnityExplorer.Size = new System.Drawing.Size(169, 29);
             this.InstallUnityExplorer.TabIndex = 31;
             this.InstallUnityExplorer.Text = "INSTALL UNITY EXPLORER";
             this.InstallUnityExplorer.UseVisualStyleBackColor = true;
@@ -608,9 +608,9 @@
             // 
             // UnistallUnityExplorer
             // 
-            this.UnistallUnityExplorer.Location = new System.Drawing.Point(317, 385);
+            this.UnistallUnityExplorer.Location = new System.Drawing.Point(3, 219);
             this.UnistallUnityExplorer.Name = "UnistallUnityExplorer";
-            this.UnistallUnityExplorer.Size = new System.Drawing.Size(191, 29);
+            this.UnistallUnityExplorer.Size = new System.Drawing.Size(169, 29);
             this.UnistallUnityExplorer.TabIndex = 32;
             this.UnistallUnityExplorer.Text = "UNISTALL UNITY EXPLORER";
             this.UnistallUnityExplorer.UseVisualStyleBackColor = true;
@@ -622,10 +622,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1082, 516);
+            this.ClientSize = new System.Drawing.Size(1049, 516);
             this.Controls.Add(this.UnistallUnityExplorer);
             this.Controls.Add(this.InstallUnityExplorer);
-            this.Controls.Add(this.comboBepInExVersions);
+            this.Controls.Add(this.ComboBepInExVersions);
             this.Controls.Add(this.UnistallBepInEx);
             this.Controls.Add(this.CloseGame);
             this.Controls.Add(this.OpenGame);
@@ -717,7 +717,7 @@
         private System.Windows.Forms.Button UnistallBepInEx;
         private System.Windows.Forms.Label game_architecture;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBepInExVersions;
+        private System.Windows.Forms.ComboBox ComboBepInExVersions;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label unityexplorer_loaded;
         private System.Windows.Forms.Button InstallUnityExplorer;

@@ -39,6 +39,8 @@ static class GameInfo
 
     public static string bepinex_status                 = "";
     public static string bepinex_version                = "";
+    public static VersionsBepInEx bepinex_version_enum = VersionsBepInEx.Unknown;
+
     public static string bepinex_loaded                 = "";
     public static string bepinex_config                 = "";
     public static string unityexplorer_loaded           = "";
@@ -97,6 +99,22 @@ static class GetInfoFiles
         }
     }
 
+    public static VersionsBepInEx GetVersionBepInEx(string ProductVersion = "")
+    {
+        if(ProductVersion.Contains("6.0.0"))
+        {
+            return VersionsBepInEx.v6_0_0;
+        }
+        else if (ProductVersion.Contains("5.4.15"))
+        {
+            return VersionsBepInEx.v5_4_15;
+        }
+        else
+        {
+            return VersionsBepInEx.Unknown;
+        }
+    }
+
     public static void CheckBepInExStatus(string exePath)
     {
         string baseDir = Path.GetDirectoryName(exePath);
@@ -111,20 +129,22 @@ static class GetInfoFiles
             {
                 var info = FileVersionInfo.GetVersionInfo(path);
 
-                GameInfo.bepinex_status = "INSTALLED";
-                GameInfo.bepinex_version = info.ProductVersion.Substring(0, 5) ?? "Unknown";
-                GameInfo.bepinex_loaded = "LOADED";
-                GameInfo.bepinex_config = "LOADED";
-                GameInfo.checkBepInEx = true;
+                GameInfo.bepinex_status         = "INSTALLED";
+                GameInfo.bepinex_version        = info.ProductVersion.Substring(0, 5) ?? "Unknown";
+                GameInfo.bepinex_loaded         = "LOADED";
+                GameInfo.bepinex_config         = "LOADED";
+                GameInfo.checkBepInEx           = true;
+                GameInfo.bepinex_version_enum   = GetVersionBepInEx(info.ProductVersion);
                 return;
             }
         }
 
-        GameInfo.bepinex_status = "N/A";
-        GameInfo.bepinex_version = "N/A";
-        GameInfo.bepinex_loaded = "NOT LOADED";
-        GameInfo.bepinex_config = "NOT LOADED";
-        GameInfo.checkBepInEx = false;
+        GameInfo.bepinex_status         = "N/A";
+        GameInfo.bepinex_version        = "N/A";
+        GameInfo.bepinex_loaded         = "NOT LOADED";
+        GameInfo.bepinex_config         = "NOT LOADED";
+        GameInfo.bepinex_version_enum   = GetVersionBepInEx();
+        GameInfo.checkBepInEx           = false;
     }
 
     public static void LoadExeInfo(string exePath)
@@ -134,10 +154,8 @@ static class GetInfoFiles
             var info = FileVersionInfo.GetVersionInfo(exePath);
 
             GameInfo.game_name          = $"{Path.GetFileName(exePath)}";
-            GameInfo.unity_version      = $"{info.ProductVersion}";
+            GameInfo.unity_version      = (!string.IsNullOrWhiteSpace(info.ProductVersion)) ? $"{(info.ProductVersion)}" : "N/A";
             GameInfo.icon               = Icon.ExtractAssociatedIcon(exePath);
-
-            //pictureBoxIcon.Image = icon?.ToBitmap();
         }
         catch (Exception ex)
         {
@@ -180,7 +198,10 @@ static class GetInfoFiles
         string baseDir = Path.GetDirectoryName(exePath);
         string[] possiblePreloaders = {
             Path.Combine(baseDir, "BepInEx", "plugins", "sinai-dev-UnityExplorer", "UnityExplorer.BIE6.Unity.Mono.dll"),
-            Path.Combine(baseDir, "BepInEx", "plugins", "sinai-dev-UnityExplorer", "UniverseLib.Mono.dll")
+            Path.Combine(baseDir, "BepInEx", "plugins", "sinai-dev-UnityExplorer", "UniverseLib.Mono.dll"),
+
+            Path.Combine(baseDir, "BepInEx", "plugins", "sinai-dev-UnityExplorer", "UnityExplorer.BIE.Unity.IL2CPP.CoreCLR.dll"),
+            Path.Combine(baseDir, "BepInEx", "plugins", "sinai-dev-UnityExplorer", "UniverseLib.BIE.IL2CPP.Interop.dll"),
         };
 
         foreach (var path in possiblePreloaders)
@@ -197,9 +218,9 @@ static class GetInfoFiles
     public static void GetInfo(string exePath)
     {
         LoadExeInfo(exePath);
-        CheckBepInExStatus(exePath);
         DetectTypeUnity(exePath);
         DetectArchitecture(exePath);
+        CheckBepInExStatus(exePath);
         CheckUnityExplorer(exePath);
     }
 }
