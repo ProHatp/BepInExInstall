@@ -104,6 +104,40 @@ namespace ProjectToolsBepInEx
             LoadedGame();
         }
 
+        private void ExitGame()
+        {
+            try
+            {
+                if (GameInfo.gameProcess != null && !GameInfo.gameProcess.HasExited)
+                {
+                    GameInfo.gameProcess.Kill();
+                    return;
+                }
+            }
+            catch
+            {
+
+            }
+
+            if (GameInfo.gameProcess != null)
+            {
+                string name = Path.GetFileNameWithoutExtension(exePath);
+                var processes = Process.GetProcessesByName(name);
+
+                foreach (var proc in processes)
+                {
+                    try
+                    {
+                        proc.Kill();
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
+        }
+
         private async void OpenFileAndWaitStart()
         {
             try
@@ -370,15 +404,6 @@ namespace ProjectToolsBepInEx
                     {
                         ResetConfig();
                     }
-
-                    //if (!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
-                    //{
-                    //    var resultado = MessageBox.Show("DO YOU WANT TO CHARGE BEPINEX?", "INFORMATION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    //    if (resultado == DialogResult.Yes)
-                    //    {
-                    //        OpenFileAndWaitStart();
-                    //    }
-                    //}
                 }
             }
         }
@@ -410,6 +435,7 @@ namespace ProjectToolsBepInEx
             bepInExConfig.DeletePreloaderFiles(exePath);
             ResetConfig();
             LoadedGame();
+            labelStatus.Text = "BepInEx Removed Successfully!";
         }
 
         private void InstallUnityExplorer_Click(object sender, EventArgs e)
@@ -421,6 +447,7 @@ namespace ProjectToolsBepInEx
         {
             unityExplorerConfig.RemoverUnityExplorer(exePath);
             LoadedGame();
+            labelStatus.Text = "Unity Explorer Removed Successfully!";
         }
 
         private void OpenGame_Click(object sender, EventArgs e)
@@ -430,36 +457,7 @@ namespace ProjectToolsBepInEx
 
         private void CloseGame_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (GameInfo.gameProcess != null && !GameInfo.gameProcess.HasExited)
-                {
-                    GameInfo.gameProcess.Kill();
-                    return;
-                }
-            }
-            catch
-            {
-
-            }
-
-            if (GameInfo.gameProcess != null)
-            {
-                string name = Path.GetFileNameWithoutExtension(exePath);
-                var processes = Process.GetProcessesByName(name);
-
-                foreach (var proc in processes)
-                {
-                    try
-                    {
-                        proc.Kill();
-                    }
-                    catch
-                    {
-
-                    }
-                }
-            }
+            ExitGame();
         }
 
         private void SelectGame_Click(object sender, EventArgs e)
@@ -478,15 +476,6 @@ namespace ProjectToolsBepInEx
                 {
                     ResetConfig();
                 }
-
-                //    if (!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
-                //{
-                //    var resultado = MessageBox.Show("DO YOU WANT TO CHARGE BEPINEX?", "INFORMATION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //    if (resultado == DialogResult.Yes)
-                //    {
-                //        OpenFileAndWaitStart();
-                //    }
-                //}
             }
         }
 
@@ -495,6 +484,99 @@ namespace ProjectToolsBepInEx
             if (ComboBepInExVersions.SelectedItem is VersionsBepInEx selected)
             {
                 GameInfo.selected_version = selected;
+            }
+        }
+
+        private void RestartGame_Click(object sender, EventArgs e)
+        {
+            ExitGame();
+            StartGame();
+        }
+
+        private void InstallBepInExToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DownloadBepInEx();
+        }
+
+        private void UnistallBepInExToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bepInExConfig.RemoveBepInEx(exePath);
+            bepInExConfig.DeletePreloaderFiles(exePath);
+            ResetConfig();
+            LoadedGame();
+        }
+
+        private void OpenRepositoriyBepInExStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bepInExConfig.OpenRepository();
+        }
+
+        private void InstallUnityExplorerStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DownloadUnityExplorer();
+        }
+
+        private void UnistallUnityExplorerToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            unityExplorerConfig.RemoverUnityExplorer(exePath);
+            LoadedGame();
+        }
+
+        private void OpenRepositoryUnityExplorerStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            unityExplorerConfig.OpenRepository();
+        }
+
+        private void SelectGameStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog folder = new OpenFileDialog
+            {
+                Filter = "Executable Files|*.exe"
+            };
+
+            if (folder.ShowDialog() == DialogResult.OK)
+            {
+                exePath = folder.FileName;
+                LoadedGame();
+
+                if (!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
+                {
+                    ResetConfig();
+                }
+            }
+        }
+
+        private void OpenGameStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StartGame();
+        }
+
+        private void CloseGameStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExitGame();
+        }
+
+        private void RestartGameStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExitGame();
+            StartGame();
+        }
+
+        private void ReloadBepInExConfigStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadedGame();
+        }
+
+        private void OpenGameFolderStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(exePath))
+            {
+                string folderPath = Path.GetDirectoryName(exePath);
+                Process.Start("explorer.exe", folderPath);
+            }
+            else
+            {
+                MessageBox.Show("File not found!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

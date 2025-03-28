@@ -8,6 +8,16 @@ using System.Windows.Forms;
 
 public class UnityExplorerConfig
 {
+    public void OpenRepository()
+    {
+        var psi = new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = "https://github.com/yukieiji/UnityExplorer",
+            UseShellExecute = true
+        };
+        System.Diagnostics.Process.Start(psi);
+    }
+
     public void RemoverUnityExplorer(string exePath)
     {
         try

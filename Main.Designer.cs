@@ -80,7 +80,24 @@
             this.OpenGame = new MetroFramework.Controls.MetroButton();
             this.SelectGame = new MetroFramework.Controls.MetroButton();
             this.labelStatus = new MetroFramework.Controls.MetroLabel();
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.RestartGame = new MetroFramework.Controls.MetroButton();
+            this.PanelTeste = new MetroFramework.Controls.MetroTile();
+            this.BarMenu = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.InstallBepInExToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UnistallBepInExToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenRepositoriyBepInExStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unityExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.InstallUnityExplorerStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UnistallUnityExplorerToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenRepositoryUnityExplorerStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SelectGameStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenGameStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CloseGameStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RestartGameStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReloadBepInExConfigStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenGameFolderStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -89,6 +106,8 @@
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            this.PanelTeste.SuspendLayout();
+            this.BarMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -104,6 +123,7 @@
             // EnableAssemblyCache
             // 
             this.EnableAssemblyCache.AutoSize = true;
+            this.EnableAssemblyCache.Cursor = System.Windows.Forms.Cursors.Hand;
             this.EnableAssemblyCache.Location = new System.Drawing.Point(6, 19);
             this.EnableAssemblyCache.Name = "EnableAssemblyCache";
             this.EnableAssemblyCache.Size = new System.Drawing.Size(148, 15);
@@ -124,6 +144,7 @@
             // HideManagerGameObject
             // 
             this.HideManagerGameObject.AutoSize = true;
+            this.HideManagerGameObject.Cursor = System.Windows.Forms.Cursors.Hand;
             this.HideManagerGameObject.Location = new System.Drawing.Point(6, 19);
             this.HideManagerGameObject.Name = "HideManagerGameObject";
             this.HideManagerGameObject.Size = new System.Drawing.Size(170, 15);
@@ -154,6 +175,7 @@
             // UnityLogListening
             // 
             this.UnityLogListening.AutoSize = true;
+            this.UnityLogListening.Cursor = System.Windows.Forms.Cursors.Hand;
             this.UnityLogListening.Location = new System.Drawing.Point(6, 19);
             this.UnityLogListening.Name = "UnityLogListening";
             this.UnityLogListening.Size = new System.Drawing.Size(125, 15);
@@ -164,6 +186,7 @@
             // LogConsoleToUnityLog
             // 
             this.LogConsoleToUnityLog.AutoSize = true;
+            this.LogConsoleToUnityLog.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LogConsoleToUnityLog.Location = new System.Drawing.Point(6, 40);
             this.LogConsoleToUnityLog.Name = "LogConsoleToUnityLog";
             this.LogConsoleToUnityLog.Size = new System.Drawing.Size(158, 15);
@@ -186,6 +209,7 @@
             // ConsoleEnabled
             // 
             this.ConsoleEnabled.AutoSize = true;
+            this.ConsoleEnabled.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ConsoleEnabled.Location = new System.Drawing.Point(6, 19);
             this.ConsoleEnabled.Name = "ConsoleEnabled";
             this.ConsoleEnabled.Size = new System.Drawing.Size(58, 15);
@@ -196,6 +220,7 @@
             // PreventClose
             // 
             this.PreventClose.AutoSize = true;
+            this.PreventClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PreventClose.Location = new System.Drawing.Point(6, 41);
             this.PreventClose.Name = "PreventClose";
             this.PreventClose.Size = new System.Drawing.Size(95, 15);
@@ -206,6 +231,7 @@
             // ShiftJisEncoding
             // 
             this.ShiftJisEncoding.AutoSize = true;
+            this.ShiftJisEncoding.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ShiftJisEncoding.Location = new System.Drawing.Point(6, 63);
             this.ShiftJisEncoding.Name = "ShiftJisEncoding";
             this.ShiftJisEncoding.Size = new System.Drawing.Size(115, 15);
@@ -228,6 +254,7 @@
             // DiskLogEnabled
             // 
             this.DiskLogEnabled.AutoSize = true;
+            this.DiskLogEnabled.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DiskLogEnabled.Location = new System.Drawing.Point(6, 19);
             this.DiskLogEnabled.Name = "DiskLogEnabled";
             this.DiskLogEnabled.Size = new System.Drawing.Size(58, 15);
@@ -238,6 +265,7 @@
             // WriteUnityLog
             // 
             this.WriteUnityLog.AutoSize = true;
+            this.WriteUnityLog.Cursor = System.Windows.Forms.Cursors.Hand;
             this.WriteUnityLog.Location = new System.Drawing.Point(6, 40);
             this.WriteUnityLog.Name = "WriteUnityLog";
             this.WriteUnityLog.Size = new System.Drawing.Size(105, 15);
@@ -248,6 +276,7 @@
             // AppendLog
             // 
             this.AppendLog.AutoSize = true;
+            this.AppendLog.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AppendLog.Location = new System.Drawing.Point(6, 61);
             this.AppendLog.Name = "AppendLog";
             this.AppendLog.Size = new System.Drawing.Size(88, 15);
@@ -271,6 +300,7 @@
             // ApplyRuntimePatches
             // 
             this.ApplyRuntimePatches.AutoSize = true;
+            this.ApplyRuntimePatches.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ApplyRuntimePatches.Location = new System.Drawing.Point(6, 19);
             this.ApplyRuntimePatches.Name = "ApplyRuntimePatches";
             this.ApplyRuntimePatches.Size = new System.Drawing.Size(146, 15);
@@ -281,6 +311,7 @@
             // DumpAssemblies
             // 
             this.DumpAssemblies.AutoSize = true;
+            this.DumpAssemblies.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DumpAssemblies.Location = new System.Drawing.Point(6, 40);
             this.DumpAssemblies.Name = "DumpAssemblies";
             this.DumpAssemblies.Size = new System.Drawing.Size(118, 15);
@@ -291,6 +322,7 @@
             // LoadDumpedAssemblies
             // 
             this.LoadDumpedAssemblies.AutoSize = true;
+            this.LoadDumpedAssemblies.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LoadDumpedAssemblies.Location = new System.Drawing.Point(6, 62);
             this.LoadDumpedAssemblies.Name = "LoadDumpedAssemblies";
             this.LoadDumpedAssemblies.Size = new System.Drawing.Size(160, 15);
@@ -301,6 +333,7 @@
             // BreakBeforeLoadAssemblies
             // 
             this.BreakBeforeLoadAssemblies.AutoSize = true;
+            this.BreakBeforeLoadAssemblies.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BreakBeforeLoadAssemblies.Location = new System.Drawing.Point(6, 83);
             this.BreakBeforeLoadAssemblies.Name = "BreakBeforeLoadAssemblies";
             this.BreakBeforeLoadAssemblies.Size = new System.Drawing.Size(180, 15);
@@ -334,7 +367,7 @@
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.OutsetPartial;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 918F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 930F));
             this.tableLayoutPanel1.Controls.Add(this.unityexplorer_loaded, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel15, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.bepinex_config, 1, 8);
@@ -525,6 +558,7 @@
             // 
             // InstallBepInEx
             // 
+            this.InstallBepInEx.Cursor = System.Windows.Forms.Cursors.Hand;
             this.InstallBepInEx.Location = new System.Drawing.Point(20, 139);
             this.InstallBepInEx.Name = "InstallBepInEx";
             this.InstallBepInEx.Size = new System.Drawing.Size(169, 36);
@@ -541,6 +575,7 @@
             // 
             // UnistallBepInEx
             // 
+            this.UnistallBepInEx.Cursor = System.Windows.Forms.Cursors.Hand;
             this.UnistallBepInEx.Location = new System.Drawing.Point(20, 181);
             this.UnistallBepInEx.Name = "UnistallBepInEx";
             this.UnistallBepInEx.Size = new System.Drawing.Size(169, 36);
@@ -550,6 +585,7 @@
             // 
             // UnistallUnityExplorer
             // 
+            this.UnistallUnityExplorer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.UnistallUnityExplorer.Location = new System.Drawing.Point(20, 284);
             this.UnistallUnityExplorer.Name = "UnistallUnityExplorer";
             this.UnistallUnityExplorer.Size = new System.Drawing.Size(169, 36);
@@ -559,6 +595,7 @@
             // 
             // InstallUnityExplorer
             // 
+            this.InstallUnityExplorer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.InstallUnityExplorer.Location = new System.Drawing.Point(20, 242);
             this.InstallUnityExplorer.Name = "InstallUnityExplorer";
             this.InstallUnityExplorer.Size = new System.Drawing.Size(169, 36);
@@ -568,6 +605,7 @@
             // 
             // ComboBepInExVersions
             // 
+            this.ComboBepInExVersions.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ComboBepInExVersions.FormattingEnabled = true;
             this.ComboBepInExVersions.ItemHeight = 23;
             this.ComboBepInExVersions.Location = new System.Drawing.Point(20, 326);
@@ -578,6 +616,7 @@
             // 
             // CloseGame
             // 
+            this.CloseGame.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CloseGame.Location = new System.Drawing.Point(328, 361);
             this.CloseGame.Name = "CloseGame";
             this.CloseGame.Size = new System.Drawing.Size(125, 36);
@@ -587,6 +626,7 @@
             // 
             // OpenGame
             // 
+            this.OpenGame.Cursor = System.Windows.Forms.Cursors.Hand;
             this.OpenGame.Location = new System.Drawing.Point(197, 361);
             this.OpenGame.Name = "OpenGame";
             this.OpenGame.Size = new System.Drawing.Size(125, 36);
@@ -596,6 +636,7 @@
             // 
             // SelectGame
             // 
+            this.SelectGame.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SelectGame.Location = new System.Drawing.Point(425, 499);
             this.SelectGame.Name = "SelectGame";
             this.SelectGame.Size = new System.Drawing.Size(166, 36);
@@ -611,13 +652,159 @@
             this.labelStatus.Size = new System.Drawing.Size(399, 23);
             this.labelStatus.TabIndex = 43;
             // 
-            // metroButton1
+            // RestartGame
             // 
-            this.metroButton1.Location = new System.Drawing.Point(459, 361);
-            this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(125, 36);
-            this.metroButton1.TabIndex = 44;
-            this.metroButton1.Text = "Restart Game";
+            this.RestartGame.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RestartGame.Location = new System.Drawing.Point(459, 361);
+            this.RestartGame.Name = "RestartGame";
+            this.RestartGame.Size = new System.Drawing.Size(125, 36);
+            this.RestartGame.TabIndex = 44;
+            this.RestartGame.Text = "Restart Game";
+            this.RestartGame.Click += new System.EventHandler(this.RestartGame_Click);
+            // 
+            // PanelTeste
+            // 
+            this.PanelTeste.BackColor = System.Drawing.Color.White;
+            this.PanelTeste.Controls.Add(this.BarMenu);
+            this.PanelTeste.CustomBackground = true;
+            this.PanelTeste.CustomForeColor = true;
+            this.PanelTeste.Location = new System.Drawing.Point(0, 8);
+            this.PanelTeste.Name = "PanelTeste";
+            this.PanelTeste.PaintTileCount = false;
+            this.PanelTeste.Size = new System.Drawing.Size(229, 23);
+            this.PanelTeste.TabIndex = 45;
+            this.PanelTeste.TileImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // BarMenu
+            // 
+            this.BarMenu.BackColor = System.Drawing.Color.Transparent;
+            this.BarMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
+            this.BarMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.unityExplorerToolStripMenuItem,
+            this.systemToolStripMenuItem});
+            this.BarMenu.Location = new System.Drawing.Point(0, 0);
+            this.BarMenu.Name = "BarMenu";
+            this.BarMenu.Size = new System.Drawing.Size(229, 24);
+            this.BarMenu.TabIndex = 0;
+            this.BarMenu.Text = "menuStrip1";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.InstallBepInExToolStripMenuItem,
+            this.UnistallBepInExToolStripMenuItem,
+            this.OpenRepositoriyBepInExStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(61, 20);
+            this.toolStripMenuItem1.Text = "BepInEx";
+            // 
+            // InstallBepInExToolStripMenuItem
+            // 
+            this.InstallBepInExToolStripMenuItem.Name = "InstallBepInExToolStripMenuItem";
+            this.InstallBepInExToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.InstallBepInExToolStripMenuItem.Text = "Install";
+            this.InstallBepInExToolStripMenuItem.Click += new System.EventHandler(this.InstallBepInExToolStripMenuItem_Click);
+            // 
+            // UnistallBepInExToolStripMenuItem
+            // 
+            this.UnistallBepInExToolStripMenuItem.Name = "UnistallBepInExToolStripMenuItem";
+            this.UnistallBepInExToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.UnistallBepInExToolStripMenuItem.Text = "Unistall";
+            this.UnistallBepInExToolStripMenuItem.Click += new System.EventHandler(this.UnistallBepInExToolStripMenuItem_Click);
+            // 
+            // OpenRepositoriyBepInExStripMenuItem
+            // 
+            this.OpenRepositoriyBepInExStripMenuItem.Name = "OpenRepositoriyBepInExStripMenuItem";
+            this.OpenRepositoriyBepInExStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OpenRepositoriyBepInExStripMenuItem.Text = "Repository";
+            this.OpenRepositoriyBepInExStripMenuItem.Click += new System.EventHandler(this.OpenRepositoriyBepInExStripMenuItem_Click);
+            // 
+            // unityExplorerToolStripMenuItem
+            // 
+            this.unityExplorerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.InstallUnityExplorerStripMenuItem,
+            this.UnistallUnityExplorerToolStripMenuItem1,
+            this.OpenRepositoryUnityExplorerStripMenuItem1});
+            this.unityExplorerToolStripMenuItem.Name = "unityExplorerToolStripMenuItem";
+            this.unityExplorerToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.unityExplorerToolStripMenuItem.Text = "Unity Explorer";
+            // 
+            // InstallUnityExplorerStripMenuItem
+            // 
+            this.InstallUnityExplorerStripMenuItem.Name = "InstallUnityExplorerStripMenuItem";
+            this.InstallUnityExplorerStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.InstallUnityExplorerStripMenuItem.Text = "Install";
+            this.InstallUnityExplorerStripMenuItem.Click += new System.EventHandler(this.InstallUnityExplorerStripMenuItem_Click);
+            // 
+            // UnistallUnityExplorerToolStripMenuItem1
+            // 
+            this.UnistallUnityExplorerToolStripMenuItem1.Name = "UnistallUnityExplorerToolStripMenuItem1";
+            this.UnistallUnityExplorerToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.UnistallUnityExplorerToolStripMenuItem1.Text = "Unistall";
+            this.UnistallUnityExplorerToolStripMenuItem1.Click += new System.EventHandler(this.UnistallUnityExplorerToolStripMenuItem1_Click);
+            // 
+            // OpenRepositoryUnityExplorerStripMenuItem1
+            // 
+            this.OpenRepositoryUnityExplorerStripMenuItem1.Name = "OpenRepositoryUnityExplorerStripMenuItem1";
+            this.OpenRepositoryUnityExplorerStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.OpenRepositoryUnityExplorerStripMenuItem1.Text = "Repository";
+            this.OpenRepositoryUnityExplorerStripMenuItem1.Click += new System.EventHandler(this.OpenRepositoryUnityExplorerStripMenuItem1_Click);
+            // 
+            // systemToolStripMenuItem
+            // 
+            this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SelectGameStripMenuItem,
+            this.OpenGameStripMenuItem,
+            this.CloseGameStripMenuItem,
+            this.RestartGameStripMenuItem,
+            this.ReloadBepInExConfigStripMenuItem,
+            this.OpenGameFolderStripMenuItem});
+            this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.systemToolStripMenuItem.Text = "System";
+            // 
+            // SelectGameStripMenuItem
+            // 
+            this.SelectGameStripMenuItem.Name = "SelectGameStripMenuItem";
+            this.SelectGameStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.SelectGameStripMenuItem.Text = "Select Game";
+            this.SelectGameStripMenuItem.Click += new System.EventHandler(this.SelectGameStripMenuItem_Click);
+            // 
+            // OpenGameStripMenuItem
+            // 
+            this.OpenGameStripMenuItem.Name = "OpenGameStripMenuItem";
+            this.OpenGameStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.OpenGameStripMenuItem.Text = "Open Game";
+            this.OpenGameStripMenuItem.Click += new System.EventHandler(this.OpenGameStripMenuItem_Click);
+            // 
+            // CloseGameStripMenuItem
+            // 
+            this.CloseGameStripMenuItem.Name = "CloseGameStripMenuItem";
+            this.CloseGameStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.CloseGameStripMenuItem.Text = "Close Game";
+            this.CloseGameStripMenuItem.Click += new System.EventHandler(this.CloseGameStripMenuItem_Click);
+            // 
+            // RestartGameStripMenuItem
+            // 
+            this.RestartGameStripMenuItem.Name = "RestartGameStripMenuItem";
+            this.RestartGameStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.RestartGameStripMenuItem.Text = "Restart Game";
+            this.RestartGameStripMenuItem.Click += new System.EventHandler(this.RestartGameStripMenuItem_Click);
+            // 
+            // ReloadBepInExConfigStripMenuItem
+            // 
+            this.ReloadBepInExConfigStripMenuItem.Name = "ReloadBepInExConfigStripMenuItem";
+            this.ReloadBepInExConfigStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.ReloadBepInExConfigStripMenuItem.Text = "Reload BepInEx Config";
+            this.ReloadBepInExConfigStripMenuItem.Click += new System.EventHandler(this.ReloadBepInExConfigStripMenuItem_Click);
+            // 
+            // OpenGameFolderStripMenuItem
+            // 
+            this.OpenGameFolderStripMenuItem.Name = "OpenGameFolderStripMenuItem";
+            this.OpenGameFolderStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.OpenGameFolderStripMenuItem.Text = "Open game folder";
+            this.OpenGameFolderStripMenuItem.Click += new System.EventHandler(this.OpenGameFolderStripMenuItem_Click);
             // 
             // Main
             // 
@@ -626,7 +813,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1068, 569);
-            this.Controls.Add(this.metroButton1);
+            this.Controls.Add(this.PanelTeste);
+            this.Controls.Add(this.RestartGame);
             this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.SelectGame);
             this.Controls.Add(this.OpenGame);
@@ -648,7 +836,6 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Main";
-            this.Text = "Project Tools BepInEx";
             this.Load += new System.EventHandler(this.Main_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Main_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Main_DragEnter);
@@ -666,6 +853,10 @@
             this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.PanelTeste.ResumeLayout(false);
+            this.PanelTeste.PerformLayout();
+            this.BarMenu.ResumeLayout(false);
+            this.BarMenu.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -723,7 +914,24 @@
         private MetroFramework.Controls.MetroButton OpenGame;
         private MetroFramework.Controls.MetroButton SelectGame;
         private MetroFramework.Controls.MetroLabel labelStatus;
-        private MetroFramework.Controls.MetroButton metroButton1;
+        private MetroFramework.Controls.MetroButton RestartGame;
+        private MetroFramework.Controls.MetroTile PanelTeste;
+        private System.Windows.Forms.MenuStrip BarMenu;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem InstallBepInExToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem UnistallBepInExToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unityExplorerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem InstallUnityExplorerStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem UnistallUnityExplorerToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem OpenRepositoriyBepInExStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OpenRepositoryUnityExplorerStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem systemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SelectGameStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OpenGameStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CloseGameStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RestartGameStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ReloadBepInExConfigStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OpenGameFolderStripMenuItem;
     }
 }
 

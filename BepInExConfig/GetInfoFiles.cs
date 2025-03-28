@@ -130,7 +130,7 @@ static class GetInfoFiles
                 var info = FileVersionInfo.GetVersionInfo(path);
 
                 GameInfo.bepinex_status         = "INSTALLED";
-                GameInfo.bepinex_version        = info.ProductVersion.Substring(0, 5) ?? "Unknown";
+                GameInfo.bepinex_version        =  info.ProductVersion ?? "Unknown";
                 GameInfo.bepinex_loaded         = "LOADED";
                 GameInfo.bepinex_config         = "LOADED";
                 GameInfo.checkBepInEx           = true;
@@ -154,7 +154,7 @@ static class GetInfoFiles
             var info = FileVersionInfo.GetVersionInfo(exePath);
 
             GameInfo.game_name          = $"{Path.GetFileName(exePath)}";
-            GameInfo.unity_version      = (!string.IsNullOrWhiteSpace(info.ProductVersion)) ? $"{(info.ProductVersion)}" : "N/A";
+            GameInfo.unity_version      = (GameInfo.checkUnity) ? (!string.IsNullOrWhiteSpace(info.ProductVersion)) ? $"{(info.ProductVersion)}" : "N/A" : "Unknown";
             GameInfo.icon               = Icon.ExtractAssociatedIcon(exePath);
         }
         catch (Exception ex)
@@ -217,10 +217,10 @@ static class GetInfoFiles
 
     public static void GetInfo(string exePath)
     {
-        LoadExeInfo(exePath);
         DetectTypeUnity(exePath);
-        DetectArchitecture(exePath);
         CheckBepInExStatus(exePath);
         CheckUnityExplorer(exePath);
+        DetectArchitecture(exePath);
+        LoadExeInfo(exePath);
     }
 }
