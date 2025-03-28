@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,7 +16,7 @@ using System.Windows.Forms;
 
 namespace ProjectToolsBepInEx
 {
-    public partial class Main: Form
+    public partial class Main: MetroFramework.Forms.MetroForm
     {
         private string iniPath;
         private string exePath;
@@ -27,6 +28,12 @@ namespace ProjectToolsBepInEx
         {
             InitializeComponent();
             LoadAvailableVersions();
+
+            this.Resizable = false;
+            this.MaximizeBox = false;
+
+            //this.Style = MetroColorStyle.Green;
+            //this.Theme = MetroThemeStyle.Dark;
         }
 
         private void LoadAvailableVersions()
@@ -123,7 +130,7 @@ namespace ProjectToolsBepInEx
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao abrir o arquivo: {ex.Message}");
+                MessageBox.Show($"Error opening file: {ex.Message}");
             }
         }
 
@@ -138,27 +145,27 @@ namespace ProjectToolsBepInEx
 
             try
             {
-                labelStatus.Text        = "Baixando arquivos...";
-                progressBar1.Value      = 0;
-                progressBar1.Visible    = true;
+                labelStatus.Text        = "Downloading files...";
+                ProgressBarDownload.Value      = 0;
+                ProgressBarDownload.Visible    = true;
                 labelStatus.Visible     = true;
 
                 using (WebClient client = new WebClient())
                 {
                     client.DownloadProgressChanged += (s, e) =>
                     {
-                        progressBar1.Value = e.ProgressPercentage;
-                        labelStatus.Text = $"Baixando... {e.ProgressPercentage}%";
+                        ProgressBarDownload.Value = e.ProgressPercentage;
+                        labelStatus.Text = $"Downloading... {e.ProgressPercentage}%";
                     };
 
                     await client.DownloadFileTaskAsync(new Uri(zipUrl), tempZipPath);
                 }
 
-                labelStatus.Text = "Extraindo arquivos...";
+                labelStatus.Text = "Extracting files...";
 
                 await Task.Run(() => DownloadFiles.ExtractZipOverwrite(tempZipPath, targetFolder));
 
-                labelStatus.Text = "BepInEx baixado e extraído com sucesso!";
+                labelStatus.Text = "BepInEx downloaded and extracted successfully!";
 
                 LoadedGame();
 
@@ -173,7 +180,7 @@ namespace ProjectToolsBepInEx
             }
             finally
             {
-                progressBar1.Value = 0;
+                ProgressBarDownload.Value = 0;
             }
         }
 
@@ -184,33 +191,32 @@ namespace ProjectToolsBepInEx
 
             string targetFolder         = Path.Combine(Path.GetDirectoryName(exePath), "BepInEx");
             string zipUrl               = DownloadFiles.GetUnityExplorerUrl();
-            MessageBox.Show(zipUrl);
 
             string tempZipPath = Path.Combine(Path.GetTempPath(), "unityexplorer.zip");
 
             try
             {
-                labelStatus.Text        = "Baixando arquivos...";
-                progressBar1.Value      = 0;
-                progressBar1.Visible    = true;
+                labelStatus.Text        = "Downloading files...";
+                ProgressBarDownload.Value      = 0;
+                ProgressBarDownload.Visible    = true;
                 labelStatus.Visible     = true;
 
                 using (WebClient client = new WebClient())
                 {
                     client.DownloadProgressChanged += (s, e) =>
                     {
-                        progressBar1.Value = e.ProgressPercentage;
-                        labelStatus.Text = $"Baixando... {e.ProgressPercentage}%";
+                        ProgressBarDownload.Value = e.ProgressPercentage;
+                        labelStatus.Text = $"Downloading... {e.ProgressPercentage}%";
                     };
 
                     await client.DownloadFileTaskAsync(new Uri(zipUrl), tempZipPath);
                 }
 
-                labelStatus.Text = "Extraindo arquivos...";
+                labelStatus.Text = "Extracting files...";
 
                 await Task.Run(() => DownloadFiles.ExtractZipOverwrite(tempZipPath, targetFolder));
 
-                labelStatus.Text = "UnityExplorer baixado e extraído com sucesso!";
+                labelStatus.Text = "Unity Explorer downloaded and extracted successfully!";
 
                 LoadedGame();
             }
@@ -220,7 +226,7 @@ namespace ProjectToolsBepInEx
             }
             finally
             {
-                progressBar1.Value = 0;
+                ProgressBarDownload.Value = 0;
             }
         }
 
@@ -325,7 +331,6 @@ namespace ProjectToolsBepInEx
         {
             GetInfoFiles.GetInfo(exePath);
             SetInfoGame();
-            ResetConfig();
             LoadAvailableVersions();
 
             if (GameInfo.checkBepInEx)
@@ -351,32 +356,71 @@ namespace ProjectToolsBepInEx
             }
         }
 
-        private void SelectGame_Click(object sender, EventArgs e)
+        private void Main_DragDrop(object sender, DragEventArgs e)
         {
-            OpenFileDialog folder = new OpenFileDialog
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                Filter = "Executable Files|*.exe"
-            };
-
-            if (folder.ShowDialog() == DialogResult.OK)
-            {
-                exePath = folder.FileName;
-                LoadedGame();
-
-                if(!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                if (files.Length > 0 && Path.GetExtension(files[0]).ToLower() == ".exe")
                 {
-                    var resultado = MessageBox.Show("DO YOU WANT TO CHARGE BEPINEX?", "INFORMATION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (resultado == DialogResult.Yes)
+                    exePath = files[0];
+                    LoadedGame();
+
+                    if (!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
                     {
-                        OpenFileAndWaitStart();
+                        ResetConfig();
                     }
+
+                    //if (!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
+                    //{
+                    //    var resultado = MessageBox.Show("DO YOU WANT TO CHARGE BEPINEX?", "INFORMATION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    //    if (resultado == DialogResult.Yes)
+                    //    {
+                    //        OpenFileAndWaitStart();
+                    //    }
+                    //}
                 }
             }
         }
 
-        private void DownLoadBepIn_Click(object sender, EventArgs e)
+        private void Main_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                if (files.Length > 0 && Path.GetExtension(files[0]).ToLower() == ".exe")
+                {
+                    e.Effect = DragDropEffects.Copy;
+                }
+                else
+                {
+                    e.Effect = DragDropEffects.None;
+                }
+            }
+        }
+
+        private void InstallBepInEx_Click(object sender, EventArgs e)
         {
             DownloadBepInEx();
+        }
+
+        private void UnistallBepInEx_Click(object sender, EventArgs e)
+        {
+            bepInExConfig.RemoveBepInEx(exePath);
+            bepInExConfig.DeletePreloaderFiles(exePath);
+            ResetConfig();
+            LoadedGame();
+        }
+
+        private void InstallUnityExplorer_Click(object sender, EventArgs e)
+        {
+            DownloadUnityExplorer();
+        }
+
+        private void UnistallUnityExplorer_Click(object sender, EventArgs e)
+        {
+            unityExplorerConfig.RemoverUnityExplorer(exePath);
+            LoadedGame();
         }
 
         private void OpenGame_Click(object sender, EventArgs e)
@@ -401,8 +445,8 @@ namespace ProjectToolsBepInEx
 
             if (GameInfo.gameProcess != null)
             {
-                string name     = Path.GetFileNameWithoutExtension(exePath);
-                var processes   = Process.GetProcessesByName(name);
+                string name = Path.GetFileNameWithoutExtension(exePath);
+                var processes = Process.GetProcessesByName(name);
 
                 foreach (var proc in processes)
                 {
@@ -418,49 +462,31 @@ namespace ProjectToolsBepInEx
             }
         }
 
-        private void UnistallBepInEx_Click(object sender, EventArgs e)
+        private void SelectGame_Click(object sender, EventArgs e)
         {
-            bepInExConfig.RemoveBepInEx(exePath);
-            bepInExConfig.DeletePreloaderFiles(exePath);
-            LoadedGame();
-        }
-
-        private void Main_DragDrop(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            OpenFileDialog folder = new OpenFileDialog
             {
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-                if (files.Length > 0 && Path.GetExtension(files[0]).ToLower() == ".exe")
-                {
-                    
-                    exePath = files[0];
-                    LoadedGame();
+                Filter = "Executable Files|*.exe"
+            };
 
-                    if (!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
-                    {
-                        var resultado = MessageBox.Show("DO YOU WANT TO CHARGE BEPINEX?", "INFORMATION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (resultado == DialogResult.Yes)
-                        {
-                            OpenFileAndWaitStart();
-                        }
-                    }
-                }
-            }
-        }
-
-        private void Main_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (folder.ShowDialog() == DialogResult.OK)
             {
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-                if (files.Length > 0 && Path.GetExtension(files[0]).ToLower() == ".exe")
+                exePath = folder.FileName;
+                LoadedGame();
+
+                if (!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
                 {
-                    e.Effect = DragDropEffects.Copy;
+                    ResetConfig();
                 }
-                else
-                {
-                    e.Effect = DragDropEffects.None;
-                }
+
+                //    if (!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
+                //{
+                //    var resultado = MessageBox.Show("DO YOU WANT TO CHARGE BEPINEX?", "INFORMATION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    if (resultado == DialogResult.Yes)
+                //    {
+                //        OpenFileAndWaitStart();
+                //    }
+                //}
             }
         }
 
@@ -470,17 +496,6 @@ namespace ProjectToolsBepInEx
             {
                 GameInfo.selected_version = selected;
             }
-        }
-
-        private void InstallUnityExplorer_Click(object sender, EventArgs e)
-        {
-            DownloadUnityExplorer();
-        }
-
-        private void UnistallUnityExplorer_Click(object sender, EventArgs e)
-        {
-            unityExplorerConfig.RemoverUnityExplorer(exePath);
-            LoadedGame();
         }
     }
 }

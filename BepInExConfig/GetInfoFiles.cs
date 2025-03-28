@@ -159,7 +159,7 @@ static class GetInfoFiles
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Erro ao carregar informações: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Error loading information: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
