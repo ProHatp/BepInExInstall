@@ -33,7 +33,7 @@ jobs:
     - name: Install ILMerge
       run: choco install ilmerge -y
 
-    - name: Merge EXE with ILMerge (global install)
+    - name: Merge EXE with ILMerge (no PDB)
       shell: cmd
       run: |
         echo Running ILMerge...
@@ -41,6 +41,7 @@ jobs:
           /target:winexe ^
           /targetplatform:v4,C:\Windows\Microsoft.NET\Framework\v4.0.30319 ^
           /out:bin\Release\BepInExInstall.exe ^
+          /log /ndebug ^
           bin\Release\BepInExInstall.exe ^
           bin\Release\MetroFramework.dll ^
           bin\Release\MetroFramework.Fonts.dll
