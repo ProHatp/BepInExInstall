@@ -1,4 +1,3 @@
-
 name: Build and Release BepInExInstall (VS2022, Final)
 
 on:
