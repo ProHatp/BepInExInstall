@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.EnableAssemblyCache = new MetroFramework.Controls.MetroCheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -367,7 +368,7 @@
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.OutsetPartial;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 933F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 936F));
             this.tableLayoutPanel1.Controls.Add(this.unityexplorer_loaded, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel15, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.bepinex_config, 1, 8);
@@ -835,6 +836,7 @@
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Load += new System.EventHandler(this.Main_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Main_DragDrop);

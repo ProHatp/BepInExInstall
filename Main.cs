@@ -97,10 +97,36 @@ namespace BepInExInstall
 
         private async void StartGame()
         {
-            GameInfo.gameProcess.StartInfo.FileName             = exePath;
-            GameInfo.gameProcess.Start();
-            await Task.Delay(3000);
-            LoadedGame();
+            string appId = GameLoader.TryGetAppIdFromSteamTxt(exePath) ?? GameLoader.TryGetAppIdFromExePath(exePath);
+
+            if (!string.IsNullOrEmpty(appId))
+            {
+                try
+                {
+                    MessageBox.Show(appId);
+
+                    Process.Start($"steam://run/{appId}");
+                    await Task.Delay(3000);
+                    LoadedGame();
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to start via Steam AppID: {ex.Message}");
+                }
+            }
+
+            try
+            {
+                GameInfo.gameProcess.StartInfo.FileName = exePath;
+                GameInfo.gameProcess.Start();
+                await Task.Delay(3000);
+                LoadedGame();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to start game from EXE: {ex.Message}");
+            }
         }
 
         private void ExitGame()
@@ -221,56 +247,6 @@ namespace BepInExInstall
             {
                 UIManager.HideProgress(ProgressBarDownload, labelStatus);
             }
-        }
-
-        private void SetInfoGame()
-        {
-            pictureBoxIcon.Image        = GameInfo.icon?.ToBitmap();
-            game_name.Text              = GameInfo.game_name;
-            game_architecture.Text      = GameInfo.game_architecture;
-
-            unity_version.Text          = GameInfo.unity_version;
-            unity_type.Text             = GameInfo.unity_type;
-            bepinex_status.Text         = GameInfo.bepinex_status;
-            bepinex_version.Text        = GameInfo.bepinex_version;
-
-            bepinex_loaded.Text         = GameInfo.bepinex_loaded;
-            bepinex_config.Text         = GameInfo.bepinex_config;
-            unityexplorer_loaded.Text   = GameInfo.unityexplorer_loaded;
-        }
-
-        private void UpdatConfigByFile()
-        {
-            if (ini == null)
-            {
-                return;
-            }
-
-            /* Caching */
-            ini.Set("Caching", "EnableAssemblyCache", EnableAssemblyCache.Checked.ToString().ToLower());
-
-            /* Chainloader */
-            ini.Set("Chainloader", "HideManagerGameObject", HideManagerGameObject.Checked.ToString().ToLower());
-
-            /* Logging */
-            ini.Set("Logging", "UnityLogListening", UnityLogListening.Checked.ToString().ToLower());
-            ini.Set("Logging", "LogConsoleToUnityLog", LogConsoleToUnityLog.Checked.ToString().ToLower());
-
-            /* Logging.Console */
-            ini.Set("Logging.Console", "Enabled", ConsoleEnabled.Checked.ToString().ToLower());
-            ini.Set("Logging.Console", "PreventClose", PreventClose.Checked.ToString().ToLower());
-            ini.Set("Logging.Console", "ShiftJisEncoding", ShiftJisEncoding.Checked.ToString().ToLower());
-
-            /* Logging.Disk */
-            ini.Set("Logging.Disk", "WriteUnityLog", WriteUnityLog.Checked.ToString().ToLower());
-            ini.Set("Logging.Disk", "AppendLog", AppendLog.Checked.ToString().ToLower());
-            ini.Set("Logging.Disk", "Enabled", DiskLogEnabled.Checked.ToString().ToLower());
-
-            /* Preloader */
-            ini.Set("Preloader", "ApplyRuntimePatches", ApplyRuntimePatches.Checked.ToString().ToLower());
-            ini.Set("Preloader", "DumpAssemblies", DumpAssemblies.Checked.ToString().ToLower());
-            ini.Set("Preloader", "LoadDumpedAssemblies", LoadDumpedAssemblies.Checked.ToString().ToLower());
-            ini.Set("Preloader", "BreakBeforeLoadAssemblies", BreakBeforeLoadAssemblies.Checked.ToString().ToLower());
         }
 
         private void LoadedGame()

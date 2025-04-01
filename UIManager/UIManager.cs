@@ -42,8 +42,8 @@ namespace BepInExInstall
 
         public static void HideProgress(MetroFramework.Controls.MetroProgressBar progressBar, Label statusLabel)
         {
-            progressBar.Visible = false;
-            statusLabel.Visible = false;
+            //statusLabel.Visible = false;
+            //progressBar.Visible = false;
             progressBar.Value = 0;
         }
     }

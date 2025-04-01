@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BepInExInstall
@@ -52,5 +53,64 @@ namespace BepInExInstall
                 }
             }
         }
+        public static string TryGetAppIdFromSteamTxt(string exePath)
+        {
+            try
+            {
+                string dir = Path.GetDirectoryName(exePath);
+                string steamTxtPath = Path.Combine(dir, "steam_appid.txt");
+
+                if (File.Exists(steamTxtPath))
+                {
+                    return File.ReadAllText(steamTxtPath).Trim();
+                }
+
+                // Tenta uma pasta acima
+                steamTxtPath = Path.Combine(Directory.GetParent(dir).FullName, "steam_appid.txt");
+                if (File.Exists(steamTxtPath))
+                {
+                    return File.ReadAllText(steamTxtPath).Trim();
+                }
+            }
+            catch { }
+
+            return null;
+        }
+
+        public static string TryGetAppIdFromExePath(string exePath)
+        {
+            try
+            {
+                string exeFolder = Path.GetDirectoryName(exePath);
+                string steamAppsPath = exeFolder;
+
+                while (!steamAppsPath.EndsWith("steamapps") && steamAppsPath != Directory.GetDirectoryRoot(steamAppsPath))
+                {
+                    steamAppsPath = Path.GetDirectoryName(steamAppsPath);
+                }
+
+                if (!Directory.Exists(steamAppsPath))
+                    return null;
+
+                string[] manifestFiles = Directory.GetFiles(steamAppsPath, "appmanifest_*.acf");
+
+                foreach (string manifest in manifestFiles)
+                {
+                    string content = File.ReadAllText(manifest);
+                    if (content.Contains(Path.GetFileNameWithoutExtension(exePath)))
+                    {
+                        var match = Regex.Match(content, @"""appid""\s+""(\d+)""");
+                        if (match.Success)
+                        {
+                            return match.Groups[1].Value;
+                        }
+                    }
+                }
+            }
+            catch { }
+
+            return null;
+        }
+
     }
 }
