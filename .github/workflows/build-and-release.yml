@@ -30,13 +30,16 @@ jobs:
     - name: Build with MSBuild
       run: msbuild BepInExInstall.sln /p:Configuration=Release
 
-    - name: Merge EXE with ILMerge
+    - name: Install ILMerge
+      run: choco install ilmerge -y
+
+    - name: Merge EXE with ILMerge (global install)
       shell: cmd
       run: |
         echo Running ILMerge...
-        packages\ILMerge.Tools.2.14.1203\tools\net452\ILMerge.exe ^
+        ILMerge.exe ^
           /target:winexe ^
-          /targetplatform:v4,C:\Windows\Microsoft.NET\Framework\v4.0.30319 ^
+          /targetplatform:v4,C:\Windows\Microsoft.NET\Framework4.0.30319 ^
           /out:bin\Release\BepInExInstall.exe ^
           bin\Release\BepInExInstall.exe ^
           bin\Release\MetroFramework.dll ^
