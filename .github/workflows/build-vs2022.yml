@@ -1,4 +1,5 @@
-name: Build BepInExInstall
+
+name: Build with Visual Studio 2022
 
 on:
   push:
@@ -11,22 +12,22 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Setup MSBuild
+    - name: Setup MSBuild from Visual Studio
       uses: microsoft/setup-msbuild@v1.1
 
     - name: Restore NuGet packages
       run: nuget restore BepInExInstall.sln
 
-    - name: Build solution
+    - name: Build with Visual Studio 2022 MSBuild
       run: msbuild BepInExInstall.sln /p:Configuration=Release
 
-    - name: Show Release Directory Contents
+    - name: Show build output
       run: dir bin\Release\
 
-    - name: Upload artifact
+    - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: BepInExInstall
