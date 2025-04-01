@@ -30,14 +30,13 @@ jobs:
     - name: Build with MSBuild
       run: msbuild BepInExInstall.sln /p:Configuration=Release
 
-    - name: Merge EXE with ILMerge (overwrite original)
+    - name: Merge EXE with ILMerge
       shell: cmd
       run: |
         echo Running ILMerge...
-        packages\ILMerge.Tools.2.14.1203	ools
-et452\ILMerge.exe ^
+        packages\ILMerge.Tools.2.14.1203\tools\net452\ILMerge.exe ^
           /target:winexe ^
-          /targetplatform:v4,C:\Windows\Microsoft.NET\Framework4.0.30319 ^
+          /targetplatform:v4,C:\Windows\Microsoft.NET\Framework\v4.0.30319 ^
           /out:bin\Release\BepInExInstall.exe ^
           bin\Release\BepInExInstall.exe ^
           bin\Release\MetroFramework.dll ^
@@ -49,22 +48,25 @@ et452\ILMerge.exe ^
         name: BepInExInstall
         path: bin/Release/
 
-    - name: Generate release notes
-      run: |
-        echo "# 🚀 BepInExInstall Release" > RELEASE.md
-        echo "" >> RELEASE.md
-        echo "Standalone executable with BepInEx + MetroFramework support." >> RELEASE.md
-        echo "" >> RELEASE.md
-        echo "Includes:" >> RELEASE.md
-        echo "- Single-file .exe (no DLLs required)" >> RELEASE.md
-        echo "- Built from latest commit" >> RELEASE.md
-
     - name: Package for Release
       if: startsWith(github.ref, 'refs/tags/')
       run: |
         mkdir release
-        copy bin\Release\BepInExInstall.exe release\
+        copy bin\Release\*.exe release\
         powershell Compress-Archive -Path release\* -DestinationPath BepInExInstall.zip
+
+    - name: Generate release notes
+      run: |
+        echo "# 🚀 BepInExInstall Release" > RELEASE.md
+        echo "" >> RELEASE.md
+        echo "Easily install and manage BepInEx & UnityExplorer for Unity games." >> RELEASE.md
+        echo "" >> RELEASE.md
+        echo "## 📦 Features" >> RELEASE.md
+        echo "- One-click BepInEx install (v5/v6 supported)" >> RELEASE.md
+        echo "- UnityExplorer integration" >> RELEASE.md
+        echo "- Drag & Drop game .exe" >> RELEASE.md
+        echo "- Automatic Unity version & architecture detection" >> RELEASE.md
+        echo "- Config editor (BepInEx.cfg)" >> RELEASE.md
 
     - name: Publish GitHub Release
       if: startsWith(github.ref, 'refs/tags/')
