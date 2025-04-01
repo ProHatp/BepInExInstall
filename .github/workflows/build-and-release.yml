@@ -55,8 +55,7 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       run: |
         mkdir release
-        copy bin\Release\*.exe release\
-        powershell Compress-Archive -Path release\* -DestinationPath BepInExInstall.zip
+        copy bin\Release\*.exe release        powershell Compress-Archive -Path release\* -DestinationPath BepInExInstall.zip
 
     - name: Generate release notes
       run: |
