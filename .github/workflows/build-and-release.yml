@@ -39,11 +39,14 @@ jobs:
       shell: bash
       run: |
         git fetch --tags
-        echo "## 🚀 What's new in ${{ github.ref_name }}" > $GITHUB_WORKSPACE/RELEASE.md
+        TAG=${{ github.ref_name }}
+        PREV_TAG=$(git tag --sort=-creatordate --merged HEAD | grep -E '^v' | sed -n '2p')
+
+        echo "## 🚀 What's new in $TAG" > $GITHUB_WORKSPACE/RELEASE.md
         echo "" >> $GITHUB_WORKSPACE/RELEASE.md
-        echo "### 📦 Commits Since Last Tag:" >> $GITHUB_WORKSPACE/RELEASE.md
+        echo "### 📦 Commits Since $PREV_TAG:" >> $GITHUB_WORKSPACE/RELEASE.md
         echo '```' >> $GITHUB_WORKSPACE/RELEASE.md
-        git log $(git describe --tags --abbrev=0 --always --match "v*" | head -n 1)..HEAD --oneline >> $GITHUB_WORKSPACE/RELEASE.md
+        git log $PREV_TAG..HEAD --oneline >> $GITHUB_WORKSPACE/RELEASE.md
         echo '```' >> $GITHUB_WORKSPACE/RELEASE.md
 
     - name: Package for Release
