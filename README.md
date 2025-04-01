@@ -4,7 +4,7 @@
   <h1 align="center">BepInExInstall</h1>
   <p align="center">🔧 Easily install and manage BepInEx & UnityExplorer for Unity games.</p>
   <p align="center">
-    <a href="https://github.com/ProHatp/BepInExInstall/actions"><img src="https://github.com/ProHatp/BepInExInstall/workflows/Build%20and%20Release/badge.svg" alt="Build Status"></a>
+    <img src="https://github.com/ProHatp/BepInExInstall/actions/workflows/build-and-release.yml/badge.svg" alt="Build Status">
     <a href="https://github.com/ProHatp/BepInExInstall/releases"><img src="https://img.shields.io/github/v/release/ProHatp/BepInExInstall?label=latest" alt="Latest Release"></a>
     <a href="LICENSE"><img src="https://img.shields.io/github/license/ProHatp/BepInExInstall" alt="License"></a>
   </p>
