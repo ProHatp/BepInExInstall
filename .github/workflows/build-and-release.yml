@@ -45,6 +45,15 @@ jobs:
           bin\Release\MetroFramework.dll ^
           bin\Release\MetroFramework.Fonts.dll
 
+    - name: Check merged EXE
+      run: |
+        if (Test-Path "bin/Release/BepInExInstall.exe") {
+          Write-Output "✅ Merged EXE successfully created."
+        } else {
+          Write-Error "❌ Merged EXE not found. ILMerge may have failed."
+          exit 1
+        }
+
     - name: Upload artifact
       uses: actions/upload-artifact@v4.3.1
       with:
@@ -55,7 +64,8 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       run: |
         mkdir release
-        copy bin\Release\*.exe release        powershell Compress-Archive -Path release\* -DestinationPath BepInExInstall.zip
+        copy bin\Release\*.exe release\
+        powershell Compress-Archive -Path release\* -DestinationPath BepInExInstall.zip
 
     - name: Generate release notes
       run: |
