@@ -1,4 +1,4 @@
-﻿namespace ProjectToolsBepInEx
+﻿namespace BepInExInstall
 {
     partial class Main
     {
@@ -367,7 +367,7 @@
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.OutsetPartial;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 930F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 933F));
             this.tableLayoutPanel1.Controls.Add(this.unityexplorer_loaded, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel15, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.bepinex_config, 1, 8);
@@ -417,7 +417,7 @@
             this.metroLabel15.Name = "metroLabel15";
             this.metroLabel15.Size = new System.Drawing.Size(114, 20);
             this.metroLabel15.TabIndex = 57;
-            this.metroLabel15.Text = "Unity Explorer:";
+            this.metroLabel15.Text = "Unity Explorer";
             this.metroLabel15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // bepinex_config
@@ -434,7 +434,7 @@
             this.metroLabel13.Name = "metroLabel13";
             this.metroLabel13.Size = new System.Drawing.Size(114, 20);
             this.metroLabel13.TabIndex = 55;
-            this.metroLabel13.Text = "BepInEx Config:";
+            this.metroLabel13.Text = "BepInEx Config";
             this.metroLabel13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // bepinex_loaded
@@ -451,7 +451,7 @@
             this.metroLabel11.Name = "metroLabel11";
             this.metroLabel11.Size = new System.Drawing.Size(114, 20);
             this.metroLabel11.TabIndex = 53;
-            this.metroLabel11.Text = "BepInEx Loaded:";
+            this.metroLabel11.Text = "BepInEx Loaded";
             this.metroLabel11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // bepinex_version
@@ -468,7 +468,7 @@
             this.metroLabel9.Name = "metroLabel9";
             this.metroLabel9.Size = new System.Drawing.Size(114, 20);
             this.metroLabel9.TabIndex = 51;
-            this.metroLabel9.Text = "BepInEx Version:";
+            this.metroLabel9.Text = "BepInEx Version";
             this.metroLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // bepinex_status
@@ -485,7 +485,7 @@
             this.metroLabel7.Name = "metroLabel7";
             this.metroLabel7.Size = new System.Drawing.Size(114, 20);
             this.metroLabel7.TabIndex = 49;
-            this.metroLabel7.Text = "BepInEx:";
+            this.metroLabel7.Text = "BepInEx";
             this.metroLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // game_architecture
@@ -526,7 +526,7 @@
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(114, 20);
             this.metroLabel4.TabIndex = 43;
-            this.metroLabel4.Text = "Architecture:";
+            this.metroLabel4.Text = "Architecture";
             this.metroLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // metroLabel3
@@ -535,7 +535,7 @@
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(114, 25);
             this.metroLabel3.TabIndex = 42;
-            this.metroLabel3.Text = "Unity Type:";
+            this.metroLabel3.Text = "Unity Type";
             this.metroLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // metroLabel2
@@ -544,7 +544,7 @@
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(114, 25);
             this.metroLabel2.TabIndex = 41;
-            this.metroLabel2.Text = "Unity Version:";
+            this.metroLabel2.Text = "Unity Version";
             this.metroLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // metroLabel1
@@ -553,7 +553,7 @@
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(114, 25);
             this.metroLabel1.TabIndex = 40;
-            this.metroLabel1.Text = "Game:";
+            this.metroLabel1.Text = "Game";
             this.metroLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // InstallBepInEx
@@ -702,21 +702,21 @@
             // InstallBepInExToolStripMenuItem
             // 
             this.InstallBepInExToolStripMenuItem.Name = "InstallBepInExToolStripMenuItem";
-            this.InstallBepInExToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.InstallBepInExToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.InstallBepInExToolStripMenuItem.Text = "Install";
             this.InstallBepInExToolStripMenuItem.Click += new System.EventHandler(this.InstallBepInExToolStripMenuItem_Click);
             // 
             // UnistallBepInExToolStripMenuItem
             // 
             this.UnistallBepInExToolStripMenuItem.Name = "UnistallBepInExToolStripMenuItem";
-            this.UnistallBepInExToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.UnistallBepInExToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.UnistallBepInExToolStripMenuItem.Text = "Unistall";
             this.UnistallBepInExToolStripMenuItem.Click += new System.EventHandler(this.UnistallBepInExToolStripMenuItem_Click);
             // 
             // OpenRepositoriyBepInExStripMenuItem
             // 
             this.OpenRepositoriyBepInExStripMenuItem.Name = "OpenRepositoriyBepInExStripMenuItem";
-            this.OpenRepositoriyBepInExStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OpenRepositoriyBepInExStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.OpenRepositoriyBepInExStripMenuItem.Text = "Repository";
             this.OpenRepositoriyBepInExStripMenuItem.Click += new System.EventHandler(this.OpenRepositoriyBepInExStripMenuItem_Click);
             // 
@@ -733,21 +733,21 @@
             // InstallUnityExplorerStripMenuItem
             // 
             this.InstallUnityExplorerStripMenuItem.Name = "InstallUnityExplorerStripMenuItem";
-            this.InstallUnityExplorerStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.InstallUnityExplorerStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.InstallUnityExplorerStripMenuItem.Text = "Install";
             this.InstallUnityExplorerStripMenuItem.Click += new System.EventHandler(this.InstallUnityExplorerStripMenuItem_Click);
             // 
             // UnistallUnityExplorerToolStripMenuItem1
             // 
             this.UnistallUnityExplorerToolStripMenuItem1.Name = "UnistallUnityExplorerToolStripMenuItem1";
-            this.UnistallUnityExplorerToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.UnistallUnityExplorerToolStripMenuItem1.Size = new System.Drawing.Size(130, 22);
             this.UnistallUnityExplorerToolStripMenuItem1.Text = "Unistall";
             this.UnistallUnityExplorerToolStripMenuItem1.Click += new System.EventHandler(this.UnistallUnityExplorerToolStripMenuItem1_Click);
             // 
             // OpenRepositoryUnityExplorerStripMenuItem1
             // 
             this.OpenRepositoryUnityExplorerStripMenuItem1.Name = "OpenRepositoryUnityExplorerStripMenuItem1";
-            this.OpenRepositoryUnityExplorerStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.OpenRepositoryUnityExplorerStripMenuItem1.Size = new System.Drawing.Size(130, 22);
             this.OpenRepositoryUnityExplorerStripMenuItem1.Text = "Repository";
             this.OpenRepositoryUnityExplorerStripMenuItem1.Click += new System.EventHandler(this.OpenRepositoryUnityExplorerStripMenuItem1_Click);
             // 
@@ -870,50 +870,50 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.PictureBox pictureBoxIcon;
+        internal System.Windows.Forms.PictureBox pictureBoxIcon;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private MetroFramework.Controls.MetroButton InstallBepInEx;
-        private MetroFramework.Controls.MetroCheckBox EnableAssemblyCache;
+        internal MetroFramework.Controls.MetroCheckBox EnableAssemblyCache;
         private MetroFramework.Controls.MetroProgressBar ProgressBarDownload;
-        private MetroFramework.Controls.MetroCheckBox HideManagerGameObject;
-        private MetroFramework.Controls.MetroCheckBox UnityLogListening;
-        private MetroFramework.Controls.MetroCheckBox LogConsoleToUnityLog;
-        private MetroFramework.Controls.MetroCheckBox ConsoleEnabled;
-        private MetroFramework.Controls.MetroCheckBox PreventClose;
-        private MetroFramework.Controls.MetroCheckBox ShiftJisEncoding;
-        private MetroFramework.Controls.MetroCheckBox DiskLogEnabled;
-        private MetroFramework.Controls.MetroCheckBox WriteUnityLog;
-        private MetroFramework.Controls.MetroCheckBox AppendLog;
-        private MetroFramework.Controls.MetroCheckBox ApplyRuntimePatches;
-        private MetroFramework.Controls.MetroCheckBox DumpAssemblies;
-        private MetroFramework.Controls.MetroCheckBox LoadDumpedAssemblies;
-        private MetroFramework.Controls.MetroCheckBox BreakBeforeLoadAssemblies;
+        internal MetroFramework.Controls.MetroCheckBox HideManagerGameObject;
+        internal MetroFramework.Controls.MetroCheckBox UnityLogListening;
+        internal MetroFramework.Controls.MetroCheckBox LogConsoleToUnityLog;
+        internal MetroFramework.Controls.MetroCheckBox ConsoleEnabled;
+        internal MetroFramework.Controls.MetroCheckBox PreventClose;
+        internal MetroFramework.Controls.MetroCheckBox ShiftJisEncoding;
+        internal MetroFramework.Controls.MetroCheckBox DiskLogEnabled;
+        internal MetroFramework.Controls.MetroCheckBox WriteUnityLog;
+        internal MetroFramework.Controls.MetroCheckBox AppendLog;
+        internal MetroFramework.Controls.MetroCheckBox ApplyRuntimePatches;
+        internal MetroFramework.Controls.MetroCheckBox DumpAssemblies;
+        internal MetroFramework.Controls.MetroCheckBox LoadDumpedAssemblies;
+        internal MetroFramework.Controls.MetroCheckBox BreakBeforeLoadAssemblies;
         private MetroFramework.Controls.MetroButton UnistallBepInEx;
         private MetroFramework.Controls.MetroButton UnistallUnityExplorer;
         private MetroFramework.Controls.MetroButton InstallUnityExplorer;
         private MetroFramework.Controls.MetroComboBox ComboBepInExVersions;
-        private MetroFramework.Controls.MetroLabel game_architecture;
-        private MetroFramework.Controls.MetroLabel unity_type;
-        private MetroFramework.Controls.MetroLabel unity_version;
-        private MetroFramework.Controls.MetroLabel game_name;
-        private MetroFramework.Controls.MetroLabel metroLabel4;
-        private MetroFramework.Controls.MetroLabel metroLabel3;
-        private MetroFramework.Controls.MetroLabel metroLabel2;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
-        private MetroFramework.Controls.MetroLabel unityexplorer_loaded;
-        private MetroFramework.Controls.MetroLabel metroLabel15;
-        private MetroFramework.Controls.MetroLabel bepinex_config;
-        private MetroFramework.Controls.MetroLabel metroLabel13;
-        private MetroFramework.Controls.MetroLabel bepinex_loaded;
-        private MetroFramework.Controls.MetroLabel metroLabel11;
-        private MetroFramework.Controls.MetroLabel bepinex_version;
-        private MetroFramework.Controls.MetroLabel metroLabel9;
-        private MetroFramework.Controls.MetroLabel bepinex_status;
-        private MetroFramework.Controls.MetroLabel metroLabel7;
+        internal MetroFramework.Controls.MetroLabel game_architecture;
+        internal MetroFramework.Controls.MetroLabel unity_type;
+        internal MetroFramework.Controls.MetroLabel unity_version;
+        internal MetroFramework.Controls.MetroLabel game_name;
+        internal MetroFramework.Controls.MetroLabel metroLabel4;
+        internal MetroFramework.Controls.MetroLabel metroLabel3;
+        internal MetroFramework.Controls.MetroLabel metroLabel2;
+        internal MetroFramework.Controls.MetroLabel metroLabel1;
+        internal MetroFramework.Controls.MetroLabel unityexplorer_loaded;
+        internal MetroFramework.Controls.MetroLabel metroLabel15;
+        internal MetroFramework.Controls.MetroLabel bepinex_config;
+        internal MetroFramework.Controls.MetroLabel metroLabel13;
+        internal MetroFramework.Controls.MetroLabel bepinex_loaded;
+        internal MetroFramework.Controls.MetroLabel metroLabel11;
+        internal MetroFramework.Controls.MetroLabel bepinex_version;
+        internal MetroFramework.Controls.MetroLabel metroLabel9;
+        internal MetroFramework.Controls.MetroLabel bepinex_status;
+        internal MetroFramework.Controls.MetroLabel metroLabel7;
         private MetroFramework.Controls.MetroButton CloseGame;
         private MetroFramework.Controls.MetroButton OpenGame;
         private MetroFramework.Controls.MetroButton SelectGame;
-        private MetroFramework.Controls.MetroLabel labelStatus;
+        internal MetroFramework.Controls.MetroLabel labelStatus;
         private MetroFramework.Controls.MetroButton RestartGame;
         private MetroFramework.Controls.MetroTile PanelTeste;
         private System.Windows.Forms.MenuStrip BarMenu;

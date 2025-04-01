@@ -1,4 +1,5 @@
-﻿using MetroFramework;
+﻿using BepInExInstall;
+using MetroFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjectToolsBepInEx
+namespace BepInExInstall
 {
     public partial class Main: MetroFramework.Forms.MetroForm
     {
@@ -88,11 +89,9 @@ namespace ProjectToolsBepInEx
         private void CheckBox_Changed(object sender, EventArgs e)
         {
             if (ini == null)
-            {
                 return;
-            }
-
-            UpdatConfigByFile();
+            
+            BepInExConfigManager.UpdateFromUI(bepInExConfig, this);
             ini.Save(iniPath);
         }
 
@@ -170,116 +169,58 @@ namespace ProjectToolsBepInEx
 
         private async void DownloadBepInEx()
         {
-            if (GameInfo.unityType == UnityType.Unknown || GameInfo.arcteture == Arcteture.Unknown || GameInfo.selected_version == VersionsBepInEx.Unknown)
-                return;
-
-            string targetFolder = Path.GetDirectoryName(exePath);
-            string zipUrl       = DownloadFiles.GetBepInExDownloadUrl();
-            string tempZipPath  = Path.Combine(Path.GetTempPath(), "bepinex.zip");
-
             try
             {
-                labelStatus.Text        = "Downloading files...";
-                ProgressBarDownload.Value      = 0;
-                ProgressBarDownload.Visible    = true;
-                labelStatus.Visible     = true;
+                UIManager.ShowProgress(ProgressBarDownload, labelStatus, "Downloading files...");
 
-                using (WebClient client = new WebClient())
+                bool success = await BepInExManager.InstallBepInEx(
+                    exePath,
+                    progress => UIManager.UpdateProgress(ProgressBarDownload, labelStatus, progress, $"Downloading... {progress}%"),
+                    status => labelStatus.Text = status
+                );
+
+                if (success)
                 {
-                    client.DownloadProgressChanged += (s, e) =>
-                    {
-                        ProgressBarDownload.Value = e.ProgressPercentage;
-                        labelStatus.Text = $"Downloading... {e.ProgressPercentage}%";
-                    };
-
-                    await client.DownloadFileTaskAsync(new Uri(zipUrl), tempZipPath);
-                }
-
-                labelStatus.Text = "Extracting files...";
-
-                await Task.Run(() => DownloadFiles.ExtractZipOverwrite(tempZipPath, targetFolder));
-
-                labelStatus.Text = "BepInEx downloaded and extracted successfully!";
-
-                LoadedGame();
-
-                if (GameInfo.bepinex_version_enum != VersionsBepInEx.v6_0_0)
-                {
-                    OpenFileAndWaitStart();
+                    LoadedGame();
+                    if (GameInfo.bepinex_version_enum != VersionsBepInEx.v6_0_0)
+                        OpenFileAndWaitStart();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                UIManager.ShowError($"Erro: {ex.Message}");
             }
             finally
             {
-                ProgressBarDownload.Value = 0;
+                UIManager.HideProgress(ProgressBarDownload, labelStatus);
             }
         }
 
         private async void DownloadUnityExplorer()
         {
-            if (GameInfo.unityType == UnityType.Unknown || GameInfo.arcteture == Arcteture.Unknown || GameInfo.bepinex_version_enum == VersionsBepInEx.Unknown)
-                return;
-
-            string targetFolder         = Path.Combine(Path.GetDirectoryName(exePath), "BepInEx");
-            string zipUrl               = DownloadFiles.GetUnityExplorerUrl();
-
-            string tempZipPath = Path.Combine(Path.GetTempPath(), "unityexplorer.zip");
-
             try
             {
-                labelStatus.Text        = "Downloading files...";
-                ProgressBarDownload.Value      = 0;
-                ProgressBarDownload.Visible    = true;
-                labelStatus.Visible     = true;
+                UIManager.ShowProgress(ProgressBarDownload, labelStatus, "Downloading files...");
 
-                using (WebClient client = new WebClient())
+                bool success = await UnityExplorerManager.InstallUnityExplorer(
+                    exePath,
+                    progress => UIManager.UpdateProgress(ProgressBarDownload, labelStatus, progress, $"Downloading... {progress}%"),
+                    status => labelStatus.Text = status
+                );
+
+                if (success)
                 {
-                    client.DownloadProgressChanged += (s, e) =>
-                    {
-                        ProgressBarDownload.Value = e.ProgressPercentage;
-                        labelStatus.Text = $"Downloading... {e.ProgressPercentage}%";
-                    };
-
-                    await client.DownloadFileTaskAsync(new Uri(zipUrl), tempZipPath);
+                    LoadedGame();
                 }
-
-                labelStatus.Text = "Extracting files...";
-
-                await Task.Run(() => DownloadFiles.ExtractZipOverwrite(tempZipPath, targetFolder));
-
-                labelStatus.Text = "Unity Explorer downloaded and extracted successfully!";
-
-                LoadedGame();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                UIManager.ShowError($"Erro: {ex.Message}");
             }
             finally
             {
-                ProgressBarDownload.Value = 0;
+                UIManager.HideProgress(ProgressBarDownload, labelStatus);
             }
-        }
-
-        private void ResetConfig()
-        {
-            EnableAssemblyCache.Checked             = false;
-            HideManagerGameObject.Checked           = false;
-            UnityLogListening.Checked               = false;
-            LogConsoleToUnityLog.Checked            = false;
-            ConsoleEnabled.Checked                  = false;
-            PreventClose.Checked                    = false;
-            ShiftJisEncoding.Checked                = false;
-            WriteUnityLog.Checked                   = false;
-            AppendLog.Checked                       = false;
-            DiskLogEnabled.Checked                  = false;
-            ApplyRuntimePatches.Checked             = false;
-            DumpAssemblies.Checked                  = false;
-            LoadDumpedAssemblies.Checked            = false;
-            BreakBeforeLoadAssemblies.Checked       = false;
         }
 
         private void SetInfoGame()
@@ -332,61 +273,17 @@ namespace ProjectToolsBepInEx
             ini.Set("Preloader", "BreakBeforeLoadAssemblies", BreakBeforeLoadAssemblies.Checked.ToString().ToLower());
         }
 
-        private void SetConfigBepInEx()
-        {
-            /* Caching */
-            EnableAssemblyCache.Checked = bepInExConfig.EnableAssemblyCache;
-
-            /* Chainloader */
-            HideManagerGameObject.Checked = bepInExConfig.HideManagerGameObject;
-
-            /* Logging */
-            UnityLogListening.Checked = bepInExConfig.UnityLogListening;
-            LogConsoleToUnityLog.Checked = bepInExConfig.LogConsoleToUnityLog;
-
-            /* Logging.Console */
-            ConsoleEnabled.Checked = bepInExConfig.ConsoleEnabled;
-            PreventClose.Checked = bepInExConfig.PreventClose;
-            ShiftJisEncoding.Checked = bepInExConfig.ShiftJisEncoding;
-
-            /* Logging.Disk */
-            WriteUnityLog.Checked = bepInExConfig.WriteUnityLog;
-            AppendLog.Checked = bepInExConfig.AppendLog;
-            DiskLogEnabled.Checked = bepInExConfig.DiskLogEnabled;
-
-            /* Preloader */
-            ApplyRuntimePatches.Checked = bepInExConfig.ApplyRuntimePatches;
-            DumpAssemblies.Checked = bepInExConfig.DumpAssemblies;
-            LoadDumpedAssemblies.Checked = bepInExConfig.LoadDumpedAssemblies;
-            BreakBeforeLoadAssemblies.Checked = bepInExConfig.BreakBeforeLoadAssemblies;
-        }
-
         private void LoadedGame()
         {
-            GetInfoFiles.GetInfo(exePath);
-            SetInfoGame();
+            GameInfoManager.Load(exePath);
+            GameInfoManager.ApplyToUI(this);
             LoadAvailableVersions();
 
-            if (GameInfo.checkBepInEx)
+            if (GameInfo.checkBepInExLoaded && GameInfo.ini_file != null)
             {
-                string basePath = Path.GetDirectoryName(exePath);
-                iniPath = Path.Combine(basePath, "BepInEx", "config", "BepInEx.cfg");
-
-                if (!File.Exists(iniPath))
-                {
-                    GameInfo.checkBepInExLoaded = false;
-                    return;
-                }
-                else
-                {
-                    GameInfo.checkBepInExLoaded = true;
-                }
-
-                bepInExConfig.CreateBkpConfigFile(iniPath);
-
-                ini = new IniFile(iniPath);
-                ini.GetAllConfigByFifle(bepInExConfig);
-                SetConfigBepInEx();
+                bepInExConfig = GameInfo.bepinex_config_data;
+                ini = GameInfo.ini_file;
+                BepInExConfigManager.ApplyToUI(bepInExConfig, this);
             }
         }
 
@@ -402,7 +299,7 @@ namespace ProjectToolsBepInEx
 
                     if (!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
                     {
-                        ResetConfig();
+                        BepInExConfigManager.Reset(this);
                     }
                 }
             }
@@ -431,9 +328,8 @@ namespace ProjectToolsBepInEx
 
         private void UnistallBepInEx_Click(object sender, EventArgs e)
         {
-            bepInExConfig.RemoveBepInEx(exePath);
-            bepInExConfig.DeletePreloaderFiles(exePath);
-            ResetConfig();
+            BepInExManager.UninstallBepInEx(exePath);
+            BepInExConfigManager.Reset(this);
             LoadedGame();
             labelStatus.Text = "BepInEx Removed Successfully!";
         }
@@ -445,7 +341,7 @@ namespace ProjectToolsBepInEx
 
         private void UnistallUnityExplorer_Click(object sender, EventArgs e)
         {
-            unityExplorerConfig.RemoverUnityExplorer(exePath);
+            UnityExplorerManager.UninstallUnityExplorer(exePath);
             LoadedGame();
             labelStatus.Text = "Unity Explorer Removed Successfully!";
         }
@@ -474,7 +370,7 @@ namespace ProjectToolsBepInEx
 
                 if (!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
                 {
-                    ResetConfig();
+                    BepInExConfigManager.Reset(this);
                 }
             }
         }
@@ -500,10 +396,10 @@ namespace ProjectToolsBepInEx
 
         private void UnistallBepInExToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bepInExConfig.RemoveBepInEx(exePath);
-            bepInExConfig.DeletePreloaderFiles(exePath);
-            ResetConfig();
+            BepInExManager.UninstallBepInEx(exePath);
+            BepInExConfigManager.Reset(this);
             LoadedGame();
+            labelStatus.Text = "BepInEx Removed Successfully!";
         }
 
         private void OpenRepositoriyBepInExStripMenuItem_Click(object sender, EventArgs e)
@@ -518,8 +414,9 @@ namespace ProjectToolsBepInEx
 
         private void UnistallUnityExplorerToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            unityExplorerConfig.RemoverUnityExplorer(exePath);
+            UnityExplorerManager.UninstallUnityExplorer(exePath);
             LoadedGame();
+            labelStatus.Text = "Unity Explorer Removed Successfully!";
         }
 
         private void OpenRepositoryUnityExplorerStripMenuItem1_Click(object sender, EventArgs e)
@@ -541,7 +438,7 @@ namespace ProjectToolsBepInEx
 
                 if (!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
                 {
-                    ResetConfig();
+                    BepInExConfigManager.Reset(this);
                 }
             }
         }

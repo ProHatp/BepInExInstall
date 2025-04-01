@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{784E65DB-383C-46F9-80E6-D3006B0DB5D6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ProjectToolsBepInEx</RootNamespace>
-    <AssemblyName>ProjectToolsBepInEx</AssemblyName>
+    <RootNamespace>BepInExInstall</RootNamespace>
+    <AssemblyName>BepInExInstall</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -31,6 +31,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>BepInExInstall.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
@@ -58,11 +64,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BepInExConfig\BepInExConfig.cs" />
+    <Compile Include="BepInEx\BepInExConfig.cs" />
+    <Compile Include="BepInEx\BepInExConfigManager.cs" />
+    <Compile Include="BepInEx\BepInExManager.cs" />
+    <Compile Include="GameInfo\GameInfoManager.cs" />
+    <Compile Include="UIManager\UIManager.cs" />
     <Compile Include="UnityExplorer\UnityExplorerConfig.cs" />
+    <Compile Include="UnityExplorer\UnityExplorerManager.cs" />
+    <Compile Include="Utils\Downloader.cs" />
     <Compile Include="Utils\DownloadFiles.cs" />
-    <Compile Include="BepInExConfig\GetInfoFiles.cs" />
-    <Compile Include="BepInExConfig\IniFile.cs" />
+    <Compile Include="BepInEx\GetInfoFiles.cs" />
+    <Compile Include="Ini\IniFile.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +83,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GameInfo\GameLoader.cs" />
+    <Compile Include="Utils\IniHandler.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -82,6 +96,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -93,12 +108,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icon.ico" />
     <Content Include="MetroFramework.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

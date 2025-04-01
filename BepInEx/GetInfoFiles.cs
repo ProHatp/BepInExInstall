@@ -21,7 +21,7 @@ enum Arcteture
 
 enum VersionsBepInEx
 {
-    v6_0_0, v5_4_15, Unknown
+    v6_0_0, v5_4_15, Unknown,
 }
 
 static class GameInfo
@@ -48,6 +48,9 @@ static class GameInfo
     public static bool checkBepInEx                     = false;
     public static bool checkUnity                       = false;
     public static bool checkBepInExLoaded               = false;
+
+    internal static IniFile ini_file;
+    internal static BepInExConfig bepinex_config_data;
 }
 
 static class GetInfoFiles

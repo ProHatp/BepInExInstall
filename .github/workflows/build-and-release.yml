@@ -1,0 +1,37 @@
+
+name: Build and Release BepInExInstall
+
+on:
+  push:
+    tags:
+      - 'v*'  # Only run on version tags like v1.0, v2.1.5 etc
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Restore NuGet packages
+      run: nuget restore BepInExInstall.sln
+
+    - name: Build solution
+      run: msbuild BepInExInstall.sln /p:Configuration=Release
+
+    - name: Zip build output
+      run: |
+        mkdir release
+        copy bin\Release\*.exe release\
+        powershell Compress-Archive -Path release\* -DestinationPath BepInExInstall.zip
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: BepInExInstall.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
