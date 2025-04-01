@@ -1,5 +1,5 @@
 
-name: Build and Release BepInExInstall (VS2022, Tags + Branches)
+name: Build and Release BepInExInstall
 
 on:
   push:
@@ -37,6 +37,18 @@ jobs:
         name: BepInExInstall
         path: bin/Release/
 
+    - name: Generate changelog
+      id: changelog
+      shell: bash
+      run: |
+        echo "## 🚀 What's new in ${{ github.ref_name }}" > RELEASE.md
+        echo "" >> RELEASE.md
+        echo "### 📦 Commits Since Last Tag:" >> RELEASE.md
+        git fetch --tags
+        echo '```' >> RELEASE.md
+        git log $(git describe --tags --abbrev=0 --always)..HEAD --oneline >> RELEASE.md
+        echo '```' >> RELEASE.md
+
     - name: Package for Release
       if: startsWith(github.ref, 'refs/tags/')
       run: |
@@ -48,6 +60,9 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       uses: softprops/action-gh-release@v1
       with:
-        files: BepInExInstall.zip
+        files: |
+          BepInExInstall.zip
+          bin/Release/BepInExInstall.exe
+        body_path: RELEASE.md
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
