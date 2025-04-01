@@ -1,5 +1,5 @@
 
-name: Build and Release BepInExInstall (VS2022)
+name: Build and Release BepInExInstall (VS2022, Final)
 
 on:
   push:
@@ -14,6 +14,8 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: write
 
     steps:
     - name: Checkout repository
@@ -32,7 +34,7 @@ jobs:
       run: dir bin\Release\
 
     - name: Upload build artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4.3.1
       with:
         name: BepInExInstall
         path: bin/Release/
