@@ -46,6 +46,7 @@ jobs:
           bin\Release\MetroFramework.Fonts.dll
 
     - name: Check merged EXE
+      shell: pwsh
       run: |
         if (Test-Path "bin/Release/BepInExInstall.exe") {
           Write-Output "✅ Merged EXE successfully created."
@@ -64,7 +65,7 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       run: |
         mkdir release
-        copy bin\Release\*.exe release\
+        copy bin\Release\BepInExInstall.exe release        del bin\Release\*.dll
         powershell Compress-Archive -Path release\* -DestinationPath BepInExInstall.zip
 
     - name: Generate release notes
