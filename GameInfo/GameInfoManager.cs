@@ -26,6 +26,7 @@ namespace BepInExInstall
                     ini.GetAllConfigByFifle(bepInExConfig);
                     GameInfo.bepinex_config_data = bepInExConfig;
                     GameInfo.ini_file = ini;
+                    GameInfo.iniPath = iniPath;
                 }
                 else
                 {

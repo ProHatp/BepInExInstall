@@ -19,7 +19,6 @@ namespace BepInExInstall
 {
     public partial class Main: MetroFramework.Forms.MetroForm
     {
-        private string iniPath;
         private string exePath;
         private IniFile ini                                 = null;
         public BepInExConfig bepInExConfig                  = new BepInExConfig();
@@ -81,33 +80,40 @@ namespace BepInExInstall
             }
         }
 
+        private void CheckBox_Changed(object sender, EventArgs e)
+        {
+            if (!GameInfo.isLoadingConfig) 
+                return;
+
+            if (ini == null)
+                return;
+
+            BepInExConfigManager.UpdateFromUI(bepInExConfig, this);
+            BepInExConfigManager.UpdatConfigByFile(ini, this);
+            ini.Save(GameInfo.iniPath);
+        }
+
         private void Main_Load(object sender, EventArgs e)
         {
             RegisterCheckBoxEvents();
         }
 
-        private void CheckBox_Changed(object sender, EventArgs e)
-        {
-            if (ini == null)
-                return;
-            
-            BepInExConfigManager.UpdateFromUI(bepInExConfig, this);
-            ini.Save(iniPath);
-        }
-
         private async void StartGame()
         {
-            string appId = GameLoader.TryGetAppIdFromSteamTxt(exePath) ?? GameLoader.TryGetAppIdFromExePath(exePath);
+            if (!File.Exists(exePath)) return;
+
+            string exeName  = Path.GetFileName(exePath);
+            string appId    = GameLoader.TryGetAppIdFromSteamTxt(exePath) ?? GameLoader.TryGetAppIdFromExePath(exePath);
 
             if (!string.IsNullOrEmpty(appId))
             {
                 try
                 {
-                    MessageBox.Show(appId);
-
+                    labelStatus.Text = $"Launching: {exeName}";
                     Process.Start($"steam://run/{appId}");
                     await Task.Delay(3000);
                     LoadedGame();
+                    labelStatus.Text = "";
                     return;
                 }
                 catch (Exception ex)
@@ -118,9 +124,11 @@ namespace BepInExInstall
 
             try
             {
+                labelStatus.Text = $"Launching: {exeName}";
                 GameInfo.gameProcess.StartInfo.FileName = exePath;
                 GameInfo.gameProcess.Start();
                 await Task.Delay(3000);
+                labelStatus.Text = "";
                 LoadedGame();
             }
             catch (Exception ex)
@@ -131,11 +139,16 @@ namespace BepInExInstall
 
         private void ExitGame()
         {
+            if (!File.Exists(exePath)) return;
+
+            string exeName = Path.GetFileName(exePath);
+
             try
             {
                 if (GameInfo.gameProcess != null && !GameInfo.gameProcess.HasExited)
                 {
                     GameInfo.gameProcess.Kill();
+                    labelStatus.Text = $"Game closed: {exeName}";
                     return;
                 }
             }
@@ -146,20 +159,53 @@ namespace BepInExInstall
 
             if (GameInfo.gameProcess != null)
             {
-                string name = Path.GetFileNameWithoutExtension(exePath);
-                var processes = Process.GetProcessesByName(name);
+                string name     = Path.GetFileNameWithoutExtension(exePath);
+                var processes   = Process.GetProcessesByName(name);
 
                 foreach (var proc in processes)
                 {
                     try
                     {
                         proc.Kill();
+                        labelStatus.Text = $"Game closed: {exeName}";
                     }
                     catch
                     {
 
                     }
                 }
+            }
+        }
+
+        private void UnistallBepInExFunc()
+        {
+            if (!File.Exists(exePath)) return;
+
+            if(GameInfo.checkUnity)
+            {
+                BepInExManager.UninstallBepInEx(exePath);
+                BepInExConfigManager.Reset(this);
+                LoadedGame();
+                labelStatus.Text = "BepInEx Removed Successfully!";
+            } else
+            {
+                labelStatus.Text = "This game is not Unity!";
+            }
+
+        }
+
+        private void UnistallUnityExplorerFunc()
+        {
+            if (!File.Exists(exePath)) return;
+
+            if (GameInfo.checkUnity)
+            {
+                UnityExplorerManager.UninstallUnityExplorer(exePath);
+                LoadedGame();
+                labelStatus.Text = "Unity Explorer Removed Successfully!";
+            } else
+            {
+                labelStatus.Text = "This game is not Unity!";
             }
         }
 
@@ -195,6 +241,13 @@ namespace BepInExInstall
 
         private async void DownloadBepInEx()
         {
+            if (!File.Exists(exePath)) return;
+            if (!GameInfo.checkUnity)
+            {
+                labelStatus.Text = "This game is not Unity!";
+                return;
+            }
+
             try
             {
                 UIManager.ShowProgress(ProgressBarDownload, labelStatus, "Downloading files...");
@@ -224,6 +277,19 @@ namespace BepInExInstall
 
         private async void DownloadUnityExplorer()
         {
+            if (!File.Exists(exePath)) return;
+            if (!GameInfo.checkUnity)
+            {
+                labelStatus.Text = "This game is not Unity!";
+                return;
+            }
+
+            if (!GameInfo.checkBepInEx)
+            {
+                labelStatus.Text = "This game does not have BepInEx!";
+                return;
+            }
+
             try
             {
                 UIManager.ShowProgress(ProgressBarDownload, labelStatus, "Downloading files...");
@@ -251,6 +317,9 @@ namespace BepInExInstall
 
         private void LoadedGame()
         {
+            if (!File.Exists(exePath)) return;
+            GameInfo.isLoadingConfig = false;
+
             GameInfoManager.Load(exePath);
             GameInfoManager.ApplyToUI(this);
             LoadAvailableVersions();
@@ -260,6 +329,17 @@ namespace BepInExInstall
                 bepInExConfig = GameInfo.bepinex_config_data;
                 ini = GameInfo.ini_file;
                 BepInExConfigManager.ApplyToUI(bepInExConfig, this);
+            }
+
+            GameInfo.isLoadingConfig = true;
+        }
+
+        private void LoadGameInit()
+        {
+            LoadedGame();
+            if (!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
+            {
+                BepInExConfigManager.Reset(this);
             }
         }
 
@@ -271,12 +351,7 @@ namespace BepInExInstall
                 if (files.Length > 0 && Path.GetExtension(files[0]).ToLower() == ".exe")
                 {
                     exePath = files[0];
-                    LoadedGame();
-
-                    if (!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
-                    {
-                        BepInExConfigManager.Reset(this);
-                    }
+                    LoadGameInit();
                 }
             }
         }
@@ -304,10 +379,7 @@ namespace BepInExInstall
 
         private void UnistallBepInEx_Click(object sender, EventArgs e)
         {
-            BepInExManager.UninstallBepInEx(exePath);
-            BepInExConfigManager.Reset(this);
-            LoadedGame();
-            labelStatus.Text = "BepInEx Removed Successfully!";
+            UnistallBepInExFunc();
         }
 
         private void InstallUnityExplorer_Click(object sender, EventArgs e)
@@ -317,9 +389,7 @@ namespace BepInExInstall
 
         private void UnistallUnityExplorer_Click(object sender, EventArgs e)
         {
-            UnityExplorerManager.UninstallUnityExplorer(exePath);
-            LoadedGame();
-            labelStatus.Text = "Unity Explorer Removed Successfully!";
+            UnistallUnityExplorerFunc();
         }
 
         private void OpenGame_Click(object sender, EventArgs e)
@@ -342,12 +412,7 @@ namespace BepInExInstall
             if (folder.ShowDialog() == DialogResult.OK)
             {
                 exePath = folder.FileName;
-                LoadedGame();
-
-                if (!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
-                {
-                    BepInExConfigManager.Reset(this);
-                }
+                LoadGameInit();
             }
         }
 
@@ -372,10 +437,7 @@ namespace BepInExInstall
 
         private void UnistallBepInExToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BepInExManager.UninstallBepInEx(exePath);
-            BepInExConfigManager.Reset(this);
-            LoadedGame();
-            labelStatus.Text = "BepInEx Removed Successfully!";
+            UnistallBepInExFunc();
         }
 
         private void OpenRepositoriyBepInExStripMenuItem_Click(object sender, EventArgs e)
@@ -390,9 +452,7 @@ namespace BepInExInstall
 
         private void UnistallUnityExplorerToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            UnityExplorerManager.UninstallUnityExplorer(exePath);
-            LoadedGame();
-            labelStatus.Text = "Unity Explorer Removed Successfully!";
+            UnistallUnityExplorerFunc();
         }
 
         private void OpenRepositoryUnityExplorerStripMenuItem1_Click(object sender, EventArgs e)
@@ -410,12 +470,7 @@ namespace BepInExInstall
             if (folder.ShowDialog() == DialogResult.OK)
             {
                 exePath = folder.FileName;
-                LoadedGame();
-
-                if (!GameInfo.checkBepInExLoaded && GameInfo.checkBepInEx)
-                {
-                    BepInExConfigManager.Reset(this);
-                }
+                LoadGameInit();
             }
         }
 

@@ -114,7 +114,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.EnableAssemblyCache);
-            this.groupBox1.Location = new System.Drawing.Point(597, 63);
+            this.groupBox1.Location = new System.Drawing.Point(586, 63);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(228, 120);
             this.groupBox1.TabIndex = 16;
@@ -135,7 +135,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.HideManagerGameObject);
-            this.groupBox2.Location = new System.Drawing.Point(597, 189);
+            this.groupBox2.Location = new System.Drawing.Point(586, 189);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(228, 120);
             this.groupBox2.TabIndex = 17;
@@ -155,7 +155,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Location = new System.Drawing.Point(597, 315);
+            this.groupBox3.Location = new System.Drawing.Point(586, 315);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(228, 120);
             this.groupBox3.TabIndex = 0;
@@ -166,7 +166,7 @@
             // 
             this.groupBox4.Controls.Add(this.UnityLogListening);
             this.groupBox4.Controls.Add(this.LogConsoleToUnityLog);
-            this.groupBox4.Location = new System.Drawing.Point(597, 441);
+            this.groupBox4.Location = new System.Drawing.Point(586, 441);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(228, 120);
             this.groupBox4.TabIndex = 0;
@@ -200,7 +200,7 @@
             this.groupBox5.Controls.Add(this.ConsoleEnabled);
             this.groupBox5.Controls.Add(this.PreventClose);
             this.groupBox5.Controls.Add(this.ShiftJisEncoding);
-            this.groupBox5.Location = new System.Drawing.Point(831, 63);
+            this.groupBox5.Location = new System.Drawing.Point(820, 63);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(228, 120);
             this.groupBox5.TabIndex = 0;
@@ -245,7 +245,7 @@
             this.groupBox6.Controls.Add(this.DiskLogEnabled);
             this.groupBox6.Controls.Add(this.WriteUnityLog);
             this.groupBox6.Controls.Add(this.AppendLog);
-            this.groupBox6.Location = new System.Drawing.Point(831, 189);
+            this.groupBox6.Location = new System.Drawing.Point(820, 189);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(228, 120);
             this.groupBox6.TabIndex = 0;
@@ -291,7 +291,7 @@
             this.groupBox7.Controls.Add(this.DumpAssemblies);
             this.groupBox7.Controls.Add(this.LoadDumpedAssemblies);
             this.groupBox7.Controls.Add(this.BreakBeforeLoadAssemblies);
-            this.groupBox7.Location = new System.Drawing.Point(831, 315);
+            this.groupBox7.Location = new System.Drawing.Point(820, 315);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(228, 120);
             this.groupBox7.TabIndex = 0;
@@ -344,7 +344,7 @@
             // 
             // groupBox8
             // 
-            this.groupBox8.Location = new System.Drawing.Point(831, 441);
+            this.groupBox8.Location = new System.Drawing.Point(820, 441);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(228, 120);
             this.groupBox8.TabIndex = 0;
@@ -354,7 +354,7 @@
             // pictureBoxIcon
             // 
             this.pictureBoxIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBoxIcon.Location = new System.Drawing.Point(70, 63);
+            this.pictureBoxIcon.Location = new System.Drawing.Point(59, 63);
             this.pictureBoxIcon.Name = "pictureBoxIcon";
             this.pictureBoxIcon.Size = new System.Drawing.Size(70, 70);
             this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -368,7 +368,7 @@
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.OutsetPartial;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 936F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 939F));
             this.tableLayoutPanel1.Controls.Add(this.unityexplorer_loaded, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel15, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.bepinex_config, 1, 8);
@@ -387,7 +387,7 @@
             this.tableLayoutPanel1.Controls.Add(this.metroLabel3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel1, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(195, 63);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(184, 63);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 11;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -560,7 +560,7 @@
             // InstallBepInEx
             // 
             this.InstallBepInEx.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.InstallBepInEx.Location = new System.Drawing.Point(20, 139);
+            this.InstallBepInEx.Location = new System.Drawing.Point(9, 139);
             this.InstallBepInEx.Name = "InstallBepInEx";
             this.InstallBepInEx.Size = new System.Drawing.Size(169, 36);
             this.InstallBepInEx.TabIndex = 33;
@@ -569,7 +569,7 @@
             // 
             // ProgressBarDownload
             // 
-            this.ProgressBarDownload.Location = new System.Drawing.Point(20, 538);
+            this.ProgressBarDownload.Location = new System.Drawing.Point(9, 538);
             this.ProgressBarDownload.Name = "ProgressBarDownload";
             this.ProgressBarDownload.Size = new System.Drawing.Size(571, 23);
             this.ProgressBarDownload.TabIndex = 35;
@@ -577,7 +577,7 @@
             // UnistallBepInEx
             // 
             this.UnistallBepInEx.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.UnistallBepInEx.Location = new System.Drawing.Point(20, 181);
+            this.UnistallBepInEx.Location = new System.Drawing.Point(9, 181);
             this.UnistallBepInEx.Name = "UnistallBepInEx";
             this.UnistallBepInEx.Size = new System.Drawing.Size(169, 36);
             this.UnistallBepInEx.TabIndex = 36;
@@ -587,7 +587,7 @@
             // UnistallUnityExplorer
             // 
             this.UnistallUnityExplorer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.UnistallUnityExplorer.Location = new System.Drawing.Point(20, 284);
+            this.UnistallUnityExplorer.Location = new System.Drawing.Point(9, 284);
             this.UnistallUnityExplorer.Name = "UnistallUnityExplorer";
             this.UnistallUnityExplorer.Size = new System.Drawing.Size(169, 36);
             this.UnistallUnityExplorer.TabIndex = 38;
@@ -597,7 +597,7 @@
             // InstallUnityExplorer
             // 
             this.InstallUnityExplorer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.InstallUnityExplorer.Location = new System.Drawing.Point(20, 242);
+            this.InstallUnityExplorer.Location = new System.Drawing.Point(9, 242);
             this.InstallUnityExplorer.Name = "InstallUnityExplorer";
             this.InstallUnityExplorer.Size = new System.Drawing.Size(169, 36);
             this.InstallUnityExplorer.TabIndex = 37;
@@ -609,7 +609,7 @@
             this.ComboBepInExVersions.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ComboBepInExVersions.FormattingEnabled = true;
             this.ComboBepInExVersions.ItemHeight = 23;
-            this.ComboBepInExVersions.Location = new System.Drawing.Point(20, 326);
+            this.ComboBepInExVersions.Location = new System.Drawing.Point(9, 326);
             this.ComboBepInExVersions.Name = "ComboBepInExVersions";
             this.ComboBepInExVersions.Size = new System.Drawing.Size(169, 29);
             this.ComboBepInExVersions.TabIndex = 39;
@@ -618,7 +618,7 @@
             // CloseGame
             // 
             this.CloseGame.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CloseGame.Location = new System.Drawing.Point(328, 361);
+            this.CloseGame.Location = new System.Drawing.Point(317, 361);
             this.CloseGame.Name = "CloseGame";
             this.CloseGame.Size = new System.Drawing.Size(125, 36);
             this.CloseGame.TabIndex = 40;
@@ -628,7 +628,7 @@
             // OpenGame
             // 
             this.OpenGame.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.OpenGame.Location = new System.Drawing.Point(197, 361);
+            this.OpenGame.Location = new System.Drawing.Point(186, 361);
             this.OpenGame.Name = "OpenGame";
             this.OpenGame.Size = new System.Drawing.Size(125, 36);
             this.OpenGame.TabIndex = 41;
@@ -638,7 +638,7 @@
             // SelectGame
             // 
             this.SelectGame.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SelectGame.Location = new System.Drawing.Point(425, 499);
+            this.SelectGame.Location = new System.Drawing.Point(414, 499);
             this.SelectGame.Name = "SelectGame";
             this.SelectGame.Size = new System.Drawing.Size(166, 36);
             this.SelectGame.Style = MetroFramework.MetroColorStyle.Green;
@@ -648,7 +648,7 @@
             // 
             // labelStatus
             // 
-            this.labelStatus.Location = new System.Drawing.Point(20, 512);
+            this.labelStatus.Location = new System.Drawing.Point(9, 512);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(399, 23);
             this.labelStatus.TabIndex = 43;
@@ -656,7 +656,7 @@
             // RestartGame
             // 
             this.RestartGame.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.RestartGame.Location = new System.Drawing.Point(459, 361);
+            this.RestartGame.Location = new System.Drawing.Point(448, 361);
             this.RestartGame.Name = "RestartGame";
             this.RestartGame.Size = new System.Drawing.Size(125, 36);
             this.RestartGame.TabIndex = 44;
@@ -813,7 +813,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1068, 569);
+            this.ClientSize = new System.Drawing.Size(1056, 568);
             this.Controls.Add(this.PanelTeste);
             this.Controls.Add(this.RestartGame);
             this.Controls.Add(this.labelStatus);

@@ -28,6 +28,8 @@ static class GameInfo
 {
     public static Process gameProcess                   = new Process();
     public static Icon icon                             = null;
+    public static bool isLoadingConfig                  = false;
+
     public static string game_name                      = "";
     public static string unity_version                  = "";
     public static string unity_type                     = "";
@@ -49,6 +51,7 @@ static class GameInfo
     public static bool checkUnity                       = false;
     public static bool checkBepInExLoaded               = false;
 
+    public static string iniPath                        = "";
     internal static IniFile ini_file;
     internal static BepInExConfig bepinex_config_data;
 }

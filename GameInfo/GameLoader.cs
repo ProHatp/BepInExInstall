@@ -82,8 +82,10 @@ namespace BepInExInstall
             try
             {
                 string exeFolder = Path.GetDirectoryName(exePath);
+                string gameFolderName = new DirectoryInfo(exeFolder).Name;
                 string steamAppsPath = exeFolder;
 
+                // Sobe até encontrar a pasta steamapps
                 while (!steamAppsPath.EndsWith("steamapps") && steamAppsPath != Directory.GetDirectoryRoot(steamAppsPath))
                 {
                     steamAppsPath = Path.GetDirectoryName(steamAppsPath);
@@ -96,13 +98,27 @@ namespace BepInExInstall
 
                 foreach (string manifest in manifestFiles)
                 {
-                    string content = File.ReadAllText(manifest);
-                    if (content.Contains(Path.GetFileNameWithoutExtension(exePath)))
+                    string[] lines = File.ReadAllLines(manifest);
+                    string appId = null;
+                    string installdir = null;
+
+                    foreach (string line in lines)
                     {
-                        var match = Regex.Match(content, @"""appid""\s+""(\d+)""");
-                        if (match.Success)
+                        if (line.Contains("\"appid\"") && appId == null)
                         {
-                            return match.Groups[1].Value;
+                            appId = ExtractQuotedValue(line);
+                        }
+                        else if (line.Contains("\"installdir\"") && installdir == null)
+                        {
+                            installdir = ExtractQuotedValue(line);
+                        }
+
+                        if (!string.IsNullOrEmpty(appId) && !string.IsNullOrEmpty(installdir))
+                        {
+                            if (string.Equals(installdir, gameFolderName, StringComparison.OrdinalIgnoreCase))
+                            {
+                                return appId;
+                            }
                         }
                     }
                 }
@@ -112,5 +128,10 @@ namespace BepInExInstall
             return null;
         }
 
+        private static string ExtractQuotedValue(string line)
+        {
+            var match = Regex.Match(line, "\"[^\"]+\"\\s+\"([^\"]+)\"");
+            return match.Success ? match.Groups[1].Value : null;
+        }
     }
 }
