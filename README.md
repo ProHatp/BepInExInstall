@@ -6,7 +6,7 @@
   <p align="center">
     <img src="https://github.com/ProHatp/BepInExInstall/actions/workflows/build-and-release.yml/badge.svg" alt="Build Status">
     <a href="https://github.com/ProHatp/BepInExInstall/releases"><img src="https://img.shields.io/github/v/release/ProHatp/BepInExInstall?label=latest" alt="Latest Release"></a>
-    <a href="LICENSE"><img src="https://img.shields.io/github/license/ProHatp/BepInExInstall" alt="License"></a>
+    <a href="http://codebuilding.org"><img src="https://user-images.githubusercontent.com/7288322/34429117-c74dbd12-ecb8-11e7-896d-46369cd0de5b.png" alt="License"></a>
   </p>
 </p>
 
