@@ -184,18 +184,14 @@ namespace BepInExInstall
 
         public static async void CheckForUpdates()
         {
-            string currentVersion = Application.ProductVersion;
-            string latestVersion = await GetLatestVersionFromGitHub("ProHatp", "BepInExInstall");
+            string currentVersion   = Application.ProductVersion;
+            string latestVersion    = await GetLatestVersionFromGitHub("ProHatp", "BepInExInstall");
 
             if (latestVersion != null)
             {
                 if (new Version(latestVersion) > new Version(currentVersion))
                 {
                     MessageBox.Show($"New version available: v{latestVersion}\nYou have: v{currentVersion}", "Update Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show($"You're using the latest version: v{currentVersion}", "Up to Date", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else

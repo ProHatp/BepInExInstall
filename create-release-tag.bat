@@ -1,6 +1,6 @@
 
 @echo off
-set /p VERSION=Enter version (ex: v1.0.0): 
+set /p VERSION=Enter version (ex: v1.0.0.0): 
 if "%VERSION%"=="" (
     echo No version entered. Aborting.
     exit /b 1
