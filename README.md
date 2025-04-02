@@ -14,7 +14,9 @@
 
 ## 📸 Preview
 
-![Screenshot](https://via.placeholder.com/800x400.png?text=Preview+of+the+BepInExInstall+UI)
+![Screenshot](https://i.imgur.com/zr9pF30.png)
+
+![Screenshot](https://i.imgur.com/MEx6IpU.jpeg)
 
 ---
 
