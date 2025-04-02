@@ -133,7 +133,7 @@ public class BepInExConfig
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error removing files: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //MessageBox.Show($"Error removing files: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 

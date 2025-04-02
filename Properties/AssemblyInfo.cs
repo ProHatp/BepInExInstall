@@ -7,12 +7,12 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Altere estes valores de atributo para modificar as informações
 // associadas a um assembly.
 [assembly: AssemblyTitle("BepInExInstall")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Easily install and manage BepInEx & UnityExplorer for Unity games.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("ProHatp")]
 [assembly: AssemblyProduct("BepInExInstall")]
 [assembly: AssemblyCopyright("Copyright ©  2025")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("ProHatp")]
 [assembly: AssemblyCulture("")]
 
 // Definir ComVisible como false torna os tipos neste assembly invisíveis

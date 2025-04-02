@@ -99,6 +99,9 @@
             this.RestartGameStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReloadBepInExConfigStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenGameFolderStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DiscordStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GithubRepositoryStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -368,7 +371,7 @@
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.OutsetPartial;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 939F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 942F));
             this.tableLayoutPanel1.Controls.Add(this.unityexplorer_loaded, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel15, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.bepinex_config, 1, 8);
@@ -672,7 +675,7 @@
             this.PanelTeste.Location = new System.Drawing.Point(0, 8);
             this.PanelTeste.Name = "PanelTeste";
             this.PanelTeste.PaintTileCount = false;
-            this.PanelTeste.Size = new System.Drawing.Size(229, 23);
+            this.PanelTeste.Size = new System.Drawing.Size(265, 23);
             this.PanelTeste.TabIndex = 45;
             this.PanelTeste.TileImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
@@ -683,10 +686,11 @@
             this.BarMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.unityExplorerToolStripMenuItem,
-            this.systemToolStripMenuItem});
+            this.systemToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.BarMenu.Location = new System.Drawing.Point(0, 0);
             this.BarMenu.Name = "BarMenu";
-            this.BarMenu.Size = new System.Drawing.Size(229, 24);
+            this.BarMenu.Size = new System.Drawing.Size(265, 24);
             this.BarMenu.TabIndex = 0;
             this.BarMenu.Text = "menuStrip1";
             // 
@@ -703,21 +707,21 @@
             // InstallBepInExToolStripMenuItem
             // 
             this.InstallBepInExToolStripMenuItem.Name = "InstallBepInExToolStripMenuItem";
-            this.InstallBepInExToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.InstallBepInExToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.InstallBepInExToolStripMenuItem.Text = "Install";
             this.InstallBepInExToolStripMenuItem.Click += new System.EventHandler(this.InstallBepInExToolStripMenuItem_Click);
             // 
             // UnistallBepInExToolStripMenuItem
             // 
             this.UnistallBepInExToolStripMenuItem.Name = "UnistallBepInExToolStripMenuItem";
-            this.UnistallBepInExToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.UnistallBepInExToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.UnistallBepInExToolStripMenuItem.Text = "Unistall";
             this.UnistallBepInExToolStripMenuItem.Click += new System.EventHandler(this.UnistallBepInExToolStripMenuItem_Click);
             // 
             // OpenRepositoriyBepInExStripMenuItem
             // 
             this.OpenRepositoriyBepInExStripMenuItem.Name = "OpenRepositoriyBepInExStripMenuItem";
-            this.OpenRepositoriyBepInExStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.OpenRepositoriyBepInExStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.OpenRepositoriyBepInExStripMenuItem.Text = "Repository";
             this.OpenRepositoriyBepInExStripMenuItem.Click += new System.EventHandler(this.OpenRepositoriyBepInExStripMenuItem_Click);
             // 
@@ -734,21 +738,21 @@
             // InstallUnityExplorerStripMenuItem
             // 
             this.InstallUnityExplorerStripMenuItem.Name = "InstallUnityExplorerStripMenuItem";
-            this.InstallUnityExplorerStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.InstallUnityExplorerStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.InstallUnityExplorerStripMenuItem.Text = "Install";
             this.InstallUnityExplorerStripMenuItem.Click += new System.EventHandler(this.InstallUnityExplorerStripMenuItem_Click);
             // 
             // UnistallUnityExplorerToolStripMenuItem1
             // 
             this.UnistallUnityExplorerToolStripMenuItem1.Name = "UnistallUnityExplorerToolStripMenuItem1";
-            this.UnistallUnityExplorerToolStripMenuItem1.Size = new System.Drawing.Size(130, 22);
+            this.UnistallUnityExplorerToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.UnistallUnityExplorerToolStripMenuItem1.Text = "Unistall";
             this.UnistallUnityExplorerToolStripMenuItem1.Click += new System.EventHandler(this.UnistallUnityExplorerToolStripMenuItem1_Click);
             // 
             // OpenRepositoryUnityExplorerStripMenuItem1
             // 
             this.OpenRepositoryUnityExplorerStripMenuItem1.Name = "OpenRepositoryUnityExplorerStripMenuItem1";
-            this.OpenRepositoryUnityExplorerStripMenuItem1.Size = new System.Drawing.Size(130, 22);
+            this.OpenRepositoryUnityExplorerStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.OpenRepositoryUnityExplorerStripMenuItem1.Text = "Repository";
             this.OpenRepositoryUnityExplorerStripMenuItem1.Click += new System.EventHandler(this.OpenRepositoryUnityExplorerStripMenuItem1_Click);
             // 
@@ -806,6 +810,29 @@
             this.OpenGameFolderStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.OpenGameFolderStripMenuItem.Text = "Open game folder";
             this.OpenGameFolderStripMenuItem.Click += new System.EventHandler(this.OpenGameFolderStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DiscordStripMenuItem,
+            this.GithubRepositoryStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // DiscordStripMenuItem
+            // 
+            this.DiscordStripMenuItem.Name = "DiscordStripMenuItem";
+            this.DiscordStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DiscordStripMenuItem.Text = "Discord";
+            this.DiscordStripMenuItem.Click += new System.EventHandler(this.DiscordStripMenuItem_Click);
+            // 
+            // GithubRepositoryStripMenuItem
+            // 
+            this.GithubRepositoryStripMenuItem.Name = "GithubRepositoryStripMenuItem";
+            this.GithubRepositoryStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.GithubRepositoryStripMenuItem.Text = "GitHub";
+            this.GithubRepositoryStripMenuItem.Click += new System.EventHandler(this.GithubRepositoryStripMenuItem_Click);
             // 
             // Main
             // 
@@ -934,6 +961,9 @@
         private System.Windows.Forms.ToolStripMenuItem RestartGameStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ReloadBepInExConfigStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OpenGameFolderStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DiscordStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GithubRepositoryStripMenuItem;
     }
 }
 

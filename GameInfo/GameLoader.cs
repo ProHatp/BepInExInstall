@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BepInExInstall
 {
@@ -53,6 +55,7 @@ namespace BepInExInstall
                 }
             }
         }
+
         public static string TryGetAppIdFromSteamTxt(string exePath)
         {
             try
@@ -132,6 +135,73 @@ namespace BepInExInstall
         {
             var match = Regex.Match(line, "\"[^\"]+\"\\s+\"([^\"]+)\"");
             return match.Success ? match.Groups[1].Value : null;
+        }
+
+        public static void OpenGitHubRepository()
+        {
+            var psi = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "https://github.com/ProHatp/BepInExInstall",
+                UseShellExecute = true
+            };
+            System.Diagnostics.Process.Start(psi);
+        }
+
+        public static void OpenDiscordGroup()
+        {
+            var psi = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "http://codebuilding.org/",
+                UseShellExecute = true
+            };
+            System.Diagnostics.Process.Start(psi);
+        }
+
+        public static async Task<string> GetLatestVersionFromGitHub(string user, string repo)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.UserAgent.ParseAdd("request");
+                    string url = $"https://api.github.com/repos/{user}/{repo}/releases/latest";
+
+                    var response = await client.GetAsync(url);
+                    if (!response.IsSuccessStatusCode)
+                        return null;
+
+                    string json = await response.Content.ReadAsStringAsync();
+                    var match = Regex.Match(json, @"""tag_name"":\s*""v?([\d\.]+)""");
+
+                    if (match.Success)
+                        return match.Groups[1].Value;
+                }
+            }
+            catch { }
+
+            return null;
+        }
+
+        public static async void CheckForUpdates()
+        {
+            string currentVersion = Application.ProductVersion;
+            string latestVersion = await GetLatestVersionFromGitHub("ProHatp", "BepInExInstall");
+
+            if (latestVersion != null)
+            {
+                if (new Version(latestVersion) > new Version(currentVersion))
+                {
+                    MessageBox.Show($"New version available: v{latestVersion}\nYou have: v{currentVersion}", "Update Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"You're using the latest version: v{currentVersion}", "Up to Date", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Could not check for updates.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

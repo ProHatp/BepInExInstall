@@ -12,11 +12,11 @@ static class DownloadFiles
 {
     public static Dictionary<(VersionsBepInEx, UnityType, Arcteture), string> VersionedBepInExLinks = new Dictionary<(VersionsBepInEx, UnityType, Arcteture), string>
     {
-        { (VersionsBepInEx.v6_0_0, UnityType.Mono, Arcteture.x86),          "https://github.com/BepInEx/BepInEx/releases/download/v6.0.0-pre.2/BepInEx-Unity.Mono-win-x86-6.0.0-pre.2.zip" },
-        { (VersionsBepInEx.v6_0_0, UnityType.Mono, Arcteture.x64),          "https://github.com/BepInEx/BepInEx/releases/download/v6.0.0-pre.2/BepInEx-Unity.Mono-win-x64-6.0.0-pre.2.zip" },
+        { (VersionsBepInEx.v6_0_0, UnityType.Mono, Arcteture.x86),          "https://builds.bepinex.dev/projects/bepinex_be/733/BepInEx-Unity.Mono-win-x86-6.0.0-be.733%2B995f049.zip" },
+        { (VersionsBepInEx.v6_0_0, UnityType.Mono, Arcteture.x64),          "https://builds.bepinex.dev/projects/bepinex_be/733/BepInEx-Unity.Mono-win-x64-6.0.0-be.733%2B995f049.zip" },
 
-        { (VersionsBepInEx.v6_0_0, UnityType.IL2CPP, Arcteture.x86),        "https://github.com/BepInEx/BepInEx/releases/download/v6.0.0-pre.2/BepInEx-Unity.IL2CPP-win-x86-6.0.0-pre.2.zip" },
-        { (VersionsBepInEx.v6_0_0, UnityType.IL2CPP, Arcteture.x64),        "https://github.com/BepInEx/BepInEx/releases/download/v6.0.0-pre.2/BepInEx-Unity.IL2CPP-win-x64-6.0.0-pre.2.zip" },
+        { (VersionsBepInEx.v6_0_0, UnityType.IL2CPP, Arcteture.x86),        "https://builds.bepinex.dev/projects/bepinex_be/733/BepInEx-Unity.IL2CPP-win-x86-6.0.0-be.733%2B995f049.zip" },
+        { (VersionsBepInEx.v6_0_0, UnityType.IL2CPP, Arcteture.x64),        "https://builds.bepinex.dev/projects/bepinex_be/733/BepInEx-Unity.IL2CPP-win-x64-6.0.0-be.733%2B995f049.zip" },
 
         { (VersionsBepInEx.v5_4_15, UnityType.Mono, Arcteture.x86),         "https://github.com/BepInEx/BepInEx/releases/download/v5.4.15/BepInEx_x86_5.4.15.0.zip" },
         { (VersionsBepInEx.v5_4_15, UnityType.Mono, Arcteture.x64),         "https://github.com/BepInEx/BepInEx/releases/download/v5.4.15/BepInEx_x64_5.4.15.0.zip" },

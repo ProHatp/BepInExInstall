@@ -31,9 +31,7 @@ namespace BepInExInstall
 
             this.Resizable = false;
             this.MaximizeBox = false;
-
-            //this.Style = MetroColorStyle.Green;
-            //this.Theme = MetroThemeStyle.Dark;
+            GameLoader.CheckForUpdates();
         }
 
         private void LoadAvailableVersions()
@@ -111,7 +109,7 @@ namespace BepInExInstall
                 {
                     labelStatus.Text = $"Launching: {exeName}";
                     Process.Start($"steam://run/{appId}");
-                    await Task.Delay(3000);
+                    await Task.Delay(5000);
                     LoadedGame();
                     labelStatus.Text = "";
                     return;
@@ -127,7 +125,7 @@ namespace BepInExInstall
                 labelStatus.Text = $"Launching: {exeName}";
                 GameInfo.gameProcess.StartInfo.FileName = exePath;
                 GameInfo.gameProcess.Start();
-                await Task.Delay(3000);
+                await Task.Delay(5000);
                 labelStatus.Text = "";
                 LoadedGame();
             }
@@ -149,6 +147,7 @@ namespace BepInExInstall
                 {
                     GameInfo.gameProcess.Kill();
                     labelStatus.Text = $"Game closed: {exeName}";
+                    LoadedGame();
                     return;
                 }
             }
@@ -168,6 +167,7 @@ namespace BepInExInstall
                     {
                         proc.Kill();
                         labelStatus.Text = $"Game closed: {exeName}";
+                        LoadedGame();
                     }
                     catch
                     {
@@ -506,6 +506,16 @@ namespace BepInExInstall
             {
                 MessageBox.Show("File not found!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void DiscordStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GameLoader.OpenDiscordGroup();
+        }
+
+        private void GithubRepositoryStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GameLoader.OpenGitHubRepository();
         }
     }
 }
